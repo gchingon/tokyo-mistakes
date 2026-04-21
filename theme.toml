@@ -1,23 +1,27 @@
 name = "tokyo-mistakes"
 license = "MIT"
-licenselink = "https://github.com/gallo-s-chingon/tokyo-mistakes/blob/master/LICENSE"
-description = "A Clean, Elegant but Advanced Hugo Theme for Hugo."
+licenselink = "https://github.com/schingon/tokyo-mistakes/blob/main/LICENSE"
+description = "A reading-first Hugo theme for writers and podcasters."
 
-homepage = "https://hugoloveit.com"
-demosite = "https://hugoloveit.com"
+homepage = "https://github.com/schingon/tokyo-mistakes"
+demosite = "https://github.com/schingon/tokyo-mistakes"
 
 tags = [
   "blog",
-  "clean",
-  "responsive",
   "dark",
-  "theme"
+  "editorial",
+  "podcast",
+  "responsive",
+  "theme",
+  "writing"
 ]
 features = [
   "cover-image",
   "favicon",
   "multilingual",
+  "podcast-ready",
   "pagination",
+  "search",
   "social-menu",
   "syntax-highlighting",
   "SEO Optimized"
@@ -26,8 +30,8 @@ features = [
 min_version = "0.128.0"
 
 [author]
-  name = "Dillon"
-  homepage = "https://schingon.com/author/"
+  name = "Stephen Chingon"
+  homepage = "https://github.com/schingon"
 
 [original]
   name = "Fastbyte01"

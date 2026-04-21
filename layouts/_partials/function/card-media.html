@@ -1,0 +1,56 @@
+{{- $page := . -}}
+{{- $params := $page.Params | merge $page.Site.Params.page -}}
+{{- $spotifyPlaceholder := "/images/show-logo.png" -}}
+{{- $spotifyPlaceholderTrimmed := "images/show-logo.png" -}}
+
+{{- $frontmatterHero := "" -}}
+{{- with $params.header -}}
+    {{- if and .teaser (ne .teaser $spotifyPlaceholder) (ne .teaser $spotifyPlaceholderTrimmed) -}}
+        {{- $frontmatterHero = .teaser -}}
+    {{- else if and .overlay_image (ne .overlay_image $spotifyPlaceholder) (ne .overlay_image $spotifyPlaceholderTrimmed) -}}
+        {{- $frontmatterHero = .overlay_image -}}
+    {{- end -}}
+{{- end -}}
+{{- if not $frontmatterHero -}}
+    {{- $frontmatterHero = $params.heroImage | default $params.featuredImage | default $params.featuredImagePreview -}}
+{{- end -}}
+{{- if and $frontmatterHero (or (eq $frontmatterHero $spotifyPlaceholder) (eq $frontmatterHero $spotifyPlaceholderTrimmed)) -}}
+    {{- $frontmatterHero = "" -}}
+{{- end -}}
+
+{{- $raw := $page.RawContent | default "" -}}
+{{- $youtubePattern := `(?is)(?:youtube\.com/embed/[A-Za-z0-9_-]{11}|youtu\.be/[A-Za-z0-9_-]{11}|id=['"][A-Za-z0-9_-]{11}['"]\s+provider=['"]youtube['"])` -}}
+{{- $youtubeMatch := index (findRE $youtubePattern $raw 1) 0 | default "" -}}
+{{- $youtubeID := "" -}}
+{{- if $youtubeMatch -}}
+    {{- $youtubeID = replaceRE `(?is).*?(?:youtube\.com/embed/|youtu\.be/|id=['"])([A-Za-z0-9_-]{11}).*` `${1}` $youtubeMatch -}}
+{{- end -}}
+
+{{- $hasSpotify := gt (len (findRE `(?is)open\.spotify\.com/(?:embed(?:-podcast)?/)?(?:episode|show)` $raw 1)) 0 -}}
+{{- $coverImage := "" -}}
+{{- $coverMatch := index (findRE `(?im)!\[(?:cover|Cover)\]\(([^)]+)\)` $raw 1) 0 | default "" -}}
+{{- if $coverMatch -}}
+    {{- $coverImage = replaceRE `(?im)!\[(?:cover|Cover)\]\(([^)]+)\)` `${1}` $coverMatch -}}
+{{- end -}}
+{{- $embeddedImage := "" -}}
+{{- $embeddedImagePattern := `(?is)(?:image_path\s*=\s*['"]([^'"]+)['"]|!\[[^\]]*\]\(([^)]+)\)|<img[^>]+src=['"]([^'"]+)['"])` -}}
+{{- $embeddedImageMatch := index (findRE $embeddedImagePattern $raw 1) 0 | default "" -}}
+{{- if $embeddedImageMatch -}}
+    {{- $embeddedImage = replaceRE $embeddedImagePattern `${1}${2}${3}` $embeddedImageMatch -}}
+    {{- if and $embeddedImage (or (eq $embeddedImage $spotifyPlaceholder) (eq $embeddedImage $spotifyPlaceholderTrimmed)) -}}
+        {{- $embeddedImage = "" -}}
+    {{- end -}}
+{{- end -}}
+
+{{- $hero := "" -}}
+{{- if $youtubeID -}}
+    {{- $hero = printf "https://i.ytimg.com/vi/%s/maxresdefault.jpg" $youtubeID -}}
+{{- else if $hasSpotify -}}
+    {{- $hero = $frontmatterHero | default $coverImage | default $embeddedImage -}}
+{{- else -}}
+    {{- $hero = $frontmatterHero | default $coverImage -}}
+{{- end -}}
+
+{{- if $hero -}}
+    {{- strings.TrimPrefix "/" $hero -}}
+{{- end -}}

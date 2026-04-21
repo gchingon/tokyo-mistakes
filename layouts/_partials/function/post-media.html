@@ -1,0 +1,33 @@
+{{- $raw := .RawContent | default "" -}}
+{{- $spotifyPattern := `(?is)open\.spotify\.com/(?:embed(?:-podcast)?/)?(episode|show)/([A-Za-z0-9]+)` -}}
+{{- $spotifyMatch := index (findRE $spotifyPattern $raw 1) 0 | default "" -}}
+{{- $spotifyKind := "" -}}
+{{- $spotifyID := "" -}}
+{{- if $spotifyMatch -}}
+  {{- $spotifyKind = replaceRE $spotifyPattern `${1}` $spotifyMatch -}}
+  {{- $spotifyID = replaceRE $spotifyPattern `${2}` $spotifyMatch -}}
+{{- end -}}
+
+{{- $youtubePattern := `(?is)(?:youtube\.com/watch\?v=|youtube\.com/embed/|youtu\.be/|id=['"])([A-Za-z0-9_-]{11})` -}}
+{{- $youtubeMatch := index (findRE $youtubePattern $raw 1) 0 | default "" -}}
+{{- $youtubeID := "" -}}
+{{- if $youtubeMatch -}}
+  {{- $youtubeID = replaceRE $youtubePattern `${1}` $youtubeMatch -}}
+{{- end -}}
+
+{{- $embed := "" -}}
+{{- $kind := "" -}}
+{{- if and $spotifyKind $spotifyID -}}
+  {{- $kind = "spotify" -}}
+  {{- $src := printf "https://open.spotify.com/embed/%s/%s" $spotifyKind $spotifyID -}}
+  {{- $title := printf "Spotify %s player for %s" $spotifyKind .Title -}}
+  {{- $height := cond (eq $spotifyKind "show") "352" "232" -}}
+  {{- $embed = printf `<div class="single-media single-media-spotify"><iframe src="%s" width="100%%" height="%s" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="%s"></iframe></div>` $src $height $title -}}
+{{- else if $youtubeID -}}
+  {{- $kind = "youtube" -}}
+  {{- $src := printf "https://www.youtube-nocookie.com/embed/%s?rel=0" $youtubeID -}}
+  {{- $title := printf "YouTube video player for %s" .Title -}}
+  {{- $embed = printf `<div class="single-media single-media-youtube"><div class="single-media-frame"><iframe src="%s" title="%s" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div></div>` $src $title -}}
+{{- end -}}
+
+{{- return dict "Kind" $kind "Embed" $embed "HasMedia" (ne $embed "") -}}

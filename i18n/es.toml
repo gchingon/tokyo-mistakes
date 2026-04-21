@@ -17,7 +17,7 @@ other = "Artículos"
 
 # === Taxonomy ===
 [allSome]
-other = "Todos los {{ .Some }}"
+other = "Todas las {{ .Some }}"
 
 [tag]
 other = "Etiqueta"
@@ -164,6 +164,9 @@ other = "Resumen"
 
 [info]
 other = "Información"
+
+[todo]
+other = "Pendiente"
 
 [tip]
 other = "Consejo"

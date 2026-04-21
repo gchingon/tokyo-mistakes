@@ -1,0 +1,105 @@
+{{- $params := .Scratch.Get "params" -}}
+{{- $showUpdated := and .Lastmod (gt .Lastmod.Unix 0) -}}
+{{- $showInfoLine := or $showUpdated (eq .Site.Params.analytics.enable true) (ne ($params.license | string) "") -}}
+
+<div class="post-footer" id="post-footer">
+    <div class="post-info">
+        {{- if $showInfoLine -}}
+            <div class="post-info-line">
+                {{- if $showUpdated -}}
+                    <div class="post-info-mod">
+                        <span>
+                            {{- .Lastmod.Format ($.Site.Params.dateformat | default "2006-01-02") | dict "Date" | T "updatedOnDate" -}}
+                            {{- if $.Site.Params.gitRepo -}}
+                                {{- with $.GitInfo -}}
+                                    &nbsp;<a class="git-hash" href="{{ printf `%v/commit/%v` $.Site.Params.gitRepo .Hash }}" target="_blank" title="commit by {{ .AuthorName }}({{ .AuthorEmail }}) {{ .Hash }}: {{ .Subject }}">
+                                        <i class="fas fa-hashtag" aria-hidden="true"></i>{{- .AbbreviatedHash -}}
+                                    </a>
+                                {{- end -}}
+                            {{- end -}}
+                        </span>
+                    </div>
+                {{- end -}}
+                {{- if eq .Site.Params.analytics.enable true -}}
+                <div id="page-views" class="post-info-mod">
+                </div>
+                {{- end -}}
+                {{- with $params.license | string -}}
+                <div class="post-info-license">
+                    <span>
+                        {{- . | safeHTML -}}
+                    </span>
+                </div>
+                {{- end -}}
+            </div>
+        {{- end -}}
+        <div class="post-info-line">
+            <div class="post-info-md">
+                {{- if $params.linktomarkdown -}}
+                    {{- with .OutputFormats.Get "markdown" -}}
+                        <span>
+                            <a class="link-to-markdown" href="{{ .RelPermalink }}" target="_blank">
+                                {{- T "readMarkdown" -}}
+                            </a>
+                        </span>
+                    {{- end -}}
+                {{- end -}}
+            </div>
+            <div class="post-info-share">
+                <span>
+                    {{- partial "plugin/share.html" . -}}
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags">
+            {{- if and (ne .Type "blog") .Params.tags -}}
+                <i class="fas fa-tags" aria-hidden="true"></i>&nbsp;
+                {{- range $index, $value := .Params.tags -}}
+                    {{- if gt $index 0 }},&nbsp;{{ end -}}
+                    {{- $tag := partialCached "function/path.html" $value $value | printf "/tags/%v" | $.Site.GetPage -}}
+                    <a href="{{ $tag.RelPermalink }}">{{ $tag.Title }}</a>
+                {{- end -}}
+            {{- end }}
+        </section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">{{ T "back" }}</a></span>&nbsp;|&nbsp;<span><a href="{{ .Site.Home.RelPermalink }}">{{ T "home" }}</a></span>
+        </section>
+    </div>
+
+    {{- if ne .Type "page" -}}
+        <div class="post-nav">
+            {{- $olderPage := false -}}
+            {{- $newerPage := false -}}
+            {{- if or (.Params.prev) (.Params.next) -}}
+                {{- with .Params.prev -}}
+                    {{- $olderPage = $.Site.GetPage . -}}
+                {{- end -}}
+                {{- with .Params.next -}}
+                    {{- $newerPage = $.Site.GetPage . -}}
+                {{- end -}}
+            {{- else -}}
+                {{- $olderPage = .PrevInSection -}}
+                {{- $newerPage = .NextInSection -}}
+            {{- end -}}
+            {{- with $newerPage -}}
+                {{- $words := findRE `\S+` (.Title | plainify) 4 -}}
+                {{- $navTitle := .Title | emojify -}}
+                {{- if gt (len $words) 3 -}}
+                    {{- $navTitle = printf "%s..." (delimit (first 3 $words) " ") -}}
+                {{- end -}}
+                <a href="{{ .RelPermalink }}" class="prev" rel="prev" title="{{ .Title }}"><i class="fas fa-angle-left" aria-hidden="true"></i>{{ $navTitle }}</a>
+            {{- end -}}
+            {{- with $olderPage -}}
+                {{- $words := findRE `\S+` (.Title | plainify) 4 -}}
+                {{- $navTitle := .Title | emojify -}}
+                {{- if gt (len $words) 3 -}}
+                    {{- $navTitle = printf "%s..." (delimit (first 3 $words) " ") -}}
+                {{- end -}}
+                <a href="{{ .RelPermalink }}" class="next" rel="next" title="{{ .Title }}">{{ $navTitle }}<i class="fas fa-angle-right" aria-hidden="true"></i></a>
+            {{- end -}}
+        </div>
+    {{- end -}}
+</div>

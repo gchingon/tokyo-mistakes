@@ -5,8 +5,8 @@ date: 2020-03-03T16:29:41+08:00
 lastmod: 2020-06-12T10:10:13+03:00
 draft: false
 author: "Dillon"
-authorLink: "https://schingon.com/author"
-description: "tokyo-mistakes theme provides multiple shortcodes on top of built-in ones in Hugo."
+authorLink: "https://dillonzq.com"
+description: "LoveIt theme provides multiple shortcodes on top of built-in ones in Hugo."
 images: []
 resources:
 - name: "featured-image"
@@ -23,7 +23,7 @@ math:
   enable: true
 ---
 
-**tokyo-mistakes** theme provides multiple shortcodes on top of built-in ones in Hugo.
+**LoveIt** theme provides multiple shortcodes on top of built-in ones in Hugo.
 
 <!--more-->
 
@@ -40,7 +40,7 @@ Hugo **extended** version is necessary for `style` shortcode.
 The `style` shortcode has two positional parameters.
 
 The **first** one is the custom style content,
-which supports nesting syntax in [:(fab fa-sass fa-fw): SASS](https://sass-lang.com/documentation/style-rules/declarations#nesting)
+which supports nesting syntax in [:(fab fa-sass): SASS](https://sass-lang.com/documentation/style-rules/declarations#nesting)
 and `&` referring to this parent HTML element.
 
 And the **second** one is the tag name of the HTML element wrapping the content you want to change style, and whose default value is `div`.
@@ -65,7 +65,9 @@ This is a **right-aligned** paragraph.
 
 `link` shortcode is an alternative to [Markdown link syntax](../basic-markdown-syntax#links). `link` shortcode can provide some other features and can be used in code blocks.
 
+{{< admonition tip >}}
 {{< version 0.2.10 >}} The complete usage of [local resource references](../theme-documentation-content#contents-organization) is supported.
+{{< /admonition >}}
 
 The `link` shortcode has the following named parameters:
 
@@ -131,7 +133,9 @@ The rendered output looks like this (hover over the link, there should be a tool
 
 `image` shortcode is an alternative to [`figure` shortcode](../theme-documentation-built-in-shortcodes#figure). `image` shortcode can take full advantage of the dependent libraries of [lazysizes](https://github.com/aFarkas/lazysizes) and [lightGallery](https://github.com/sachinchoolur/lightgallery).
 
+{{< admonition tip >}}
 {{< version 0.2.10 >}} The complete usage of [local resource references](../theme-documentation-content#contents-organization) is supported.
+{{< /admonition >}}
 
 The `image` shortcode has the following named parameters:
 
@@ -195,15 +199,19 @@ The rendered output looks like this:
 
 ## 4 admonition
 
-The `admonition` shortcode supports **12** types of banners to help you put notice in your page.
+{{< version 1.0.0 changed >}}
+
+The `admonition` shortcode supports **13** types of admonition banners to help you put notice in your page.
 
 *Markdown or HTML format in the content is supported.*
 
-{{< admonition >}}
+{{< admonition note >}}
 A **note** banner
 {{< /admonition >}}
 
 {{< admonition abstract >}}
+**Aliases**: `summary`, `tldr`
+
 An **abstract** banner
 {{< /admonition >}}
 
@@ -211,27 +219,45 @@ An **abstract** banner
 A **info** banner
 {{< /admonition >}}
 
+{{< admonition todo >}}
+{{< version 1.0.0 >}}
+
+A **todo** banner
+{{< /admonition >}}
+
 {{< admonition tip >}}
+**Aliases**: `hint`, `important`
+
 A **tip** banner
 {{< /admonition >}}
 
 {{< admonition success >}}
+**Aliases**: `check`, `done`
+
 A **success** banner
 {{< /admonition >}}
 
 {{< admonition question >}}
+**Aliases**: `help`, `faq`
+
 A **question** banner
 {{< /admonition >}}
 
 {{< admonition warning >}}
+**Aliases**: `warn`, `caution`, `attention`
+
 A **warning** banner
 {{< /admonition >}}
 
 {{< admonition failure >}}
+**Aliases**: `fail`, `missing`
+
 A **failure** banner
 {{< /admonition >}}
 
 {{< admonition danger >}}
+**Aliases**: `error`
+
 A **danger** banner
 {{< /admonition >}}
 
@@ -244,6 +270,8 @@ An **example** banner
 {{< /admonition >}}
 
 {{< admonition quote >}}
+**Aliases**: `cite`
+
 A **quote** banner
 {{< /admonition >}}
 
@@ -265,11 +293,11 @@ Example `admonition` input:
 
 ```markdown
 {{</* admonition type=tip title="This is a tip" open=false */>}}
-A **tip** banner
+This is a tip
 {{</* /admonition */>}}
 Or
 {{</* admonition tip "This is a tip" false */>}}
-A **tip** banner
+This is a tip
 {{</* /admonition */>}}
 ```
 
@@ -291,15 +319,7 @@ The `echarts` shortcode supports data visualization in Hugo with [ECharts](https
 
 The full documentation is provided in [Theme Documentation - echarts Shortcode](../theme-documentation-echarts-shortcode).
 
-## 7 mapbox
-
-{{< version 0.2.0 >}}
-
-The `mapbox` shortcode supports interactive maps in Hugo with [Mapbox GL JS](https://docs.mapbox.com/mapbox-gl-js) library.
-
-The full documentation is provided in [Theme Documentation - mapbox Shortcode](../theme-documentation-mapbox-shortcode).
-
-## 8 music
+## 7 music
 
 The `music` shortcode embeds a responsive music player based on [APlayer](https://github.com/MoePlayer/APlayer) and [MetingJS](https://github.com/metowolf/MetingJS) library.
 
@@ -323,7 +343,7 @@ The full documentation is provided in [Theme Documentation - typeit Shortcode](.
 
 {{< version 0.2.8 >}}
 
-`script` is a shortcode to insert custom **:(fab fa-js fa-fw): Javascript** in your post.
+`script` is a shortcode to insert custom **:(fab fa-js): Javascript** in your post.
 
 {{< admonition >}}
 The script content can be guaranteed to be executed in order after all third-party libraries are loaded. So you are free to use third-party libraries.
@@ -333,21 +353,21 @@ Example `script` input:
 
 ```markdown
 {{</* script */>}}
-console.log('Hello tokyo-mistakes!');
+console.log('Hello LoveIt!');
 {{</* /script */>}}
 ```
 
 You can see the output in the console of the developer tool.
 
 {{< script >}}
-console.log('Hello tokyo-mistakes!');
+console.log('Hello LoveIt!');
 {{< /script >}}
 
 ## 12 raw
 
 {{< version 0.2.11 >}}
 
-`raw` is a shortcode to insert raw **:(fab fa-html5 fa-fw): HTML** content in your post.
+`raw` is a shortcode to insert raw **:(fab fa-html5): HTML** content in your post.
 This is useful when you want to include some Markdown content to **avoid being rendered or escaped** by Hugo.
 
 Example `raw` input:
@@ -413,7 +433,7 @@ This renders as {{< person url="https://evgenykuznetsov.org" name="Evgeny Kuznet
 Without an explicitly given picture, a generic icon is used. This input:
 
 ```markdown
-{{</* person "https://schingon.com/author/" Dillon "author of the tokyo-mistakes theme" */>}}
+{{</* person "https://dillonzq.com/" Dillon "author of the LoveIt theme" */>}}
 ```
 
-This renders as {{< person "https://schingon.com/author/" Dillon "author of the tokyo-mistakes theme" >}}.
+This renders as {{< person "https://dillonzq.com/" Dillon "author of the LoveIt theme" >}}.

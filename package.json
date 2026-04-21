@@ -1,16 +1,8 @@
 {
-  "name": "tokyomistakes-src",
-  "version": "0.3.1",
+  "name": "loveit-src",
+  "version": "1.0.0",
   "description": "tokyo-mistakes theme source file",
   "private": true,
-  "dependencies": {
-    "lazysizes": "^5.3.2",
-    "object-fit-images": "^3.2.4",
-    "vis-network": "^9.1.6",
-    "vis-data": "^7.1.2",
-    "vis-util": "^5.0.1",
-    "twemoji": "^14.0.2"
-  },
   "devDependencies": {
     "@babel/cli": "^7.26.4",
     "@babel/core": "^7.26.9",
@@ -18,16 +10,12 @@
     "babelify": "^10.0.0",
     "browserify": "^17.0.1",
     "core-js": "^3.40.0",
-    "husky": "^9.1.7",
-    "segmentit": "^2.0.3",
-    "htmlproofer": "^5.0.0"
+    "segmentit": "^2.0.3"
   },
   "scripts": {
     "preinstall": "npx npm-force-resolutions",
-    "prepare": "husky install",
     "compile": "npx babel src/js --out-file assets/js/theme.js",
     "compile-lunr-segmentit": "browserify src/lib/lunr/lunr.segmentit.js -o assets/lib/lunr/lunr.segmentit.js -t babelify --presets @babel/preset-env",
-    "compile-vis-network": "browserify src/lib/vis-network/index.js -o assets/js/vis-network.js -t babelify --presets @babel/preset-env",
     "hugo": "hugo --source exampleSite --buildDrafts --gc",
     "hugo-development": "hugo --source exampleSite --buildDrafts --gc --minify --environment development",
     "hugo-production": "hugo --source exampleSite --gc --minify --environment production",
@@ -39,16 +27,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gallo-s-chingon/tokyo-mistakes.git"
+    "url": "git+https://github.com/schingon/tokyo-mistakes.git"
   },
   "keywords": [
     "hugo",
     "theme"
   ],
-  "author": "Gallo Chingon",
+  "author": "Dillon",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/gallo-s-chingon/tokyo-mistakes/issues"
+    "url": "https://github.com/schingon/tokyo-mistakes/issues"
   },
-  "homepage": "https://github.com/gallo-s-chingon/tokyo-mistakes#readme"
+  "homepage": "https://github.com/schingon/tokyo-mistakes#readme"
 }

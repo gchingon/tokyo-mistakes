@@ -1,0 +1,17 @@
+{{- define "title" }}{{ .Title }} - {{ .Site.Title }}{{ end -}}
+
+{{- define "content" -}}
+    {{- $pages := .RegularPages.ByDate.Reverse -}}
+    {{- $paginator := .Paginate $pages 9 -}}
+    <div class="page archive archive-tokyo archive-{{ .Section }}">
+        {{- partial "hero.html" . -}}
+        {{- if gt (len $pages) 0 -}}
+            <div class="archive-grid">
+                {{- range $paginator.Pages -}}
+                    {{- .Render "summary" -}}
+                {{- end -}}
+            </div>
+            {{- partial "paginator.html" . -}}
+        {{- end -}}
+    </div>
+{{- end -}}

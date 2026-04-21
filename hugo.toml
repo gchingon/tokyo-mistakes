@@ -1,199 +1,576 @@
-baseURL = "https://schingon.com"
+baseURL = "/"
+title = "Gallo CHINGÓN Podcast"
 languageCode = "en-us"
-title = "S Chingon"
-theme = "tokyo-mistakes"
+defaultContentLanguage = "en"
+contentDir = "exampleSite/content"
+staticDir = ["exampleSite/static"]
+ignoreFiles = [
+  "content/categories/.*",
+  "content/tags/.*",
+  "content/posts/.*",
+]
 
-buildDrafts = false
-buildFuture = false
-canonifyURLs = true
-
-[taxonomies]
-tag = "tags"
-category = "categories"
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
 
 [markup]
   [markup.goldmark]
-    [markup.goldmark.parser]
-      [markup.goldmark.parser.attribute]
-        "block" = true
     [markup.goldmark.renderer]
       unsafe = true
-  [markup.highlight]
-    anchorLineNos = false
-    codeFences = true
-    guessSyntax = true
-    hl_Lines = ""
-    lineAnchors = ""
-    lineNos = true
-    lineNumbersInTable = true
-    noClasses = false
-    style = "tokyonight-night"
-    tabWidth = 4
-  [markup.tableOfContents]
-    endLevel = 3
-    ordered = false
-    startLevel = 1
+
+[menu]
+  [[menu.main]]
+    weight = 1
+    identifier = "episodes"
+    name = "Episodes"
+    url = "/episodes/"
+    title = "Archived podcast episodes"
+  [[menu.main]]
+    weight = 2
+    identifier = "blog"
+    name = "Blog"
+    url = "/blog/"
+    title = "Writing and notes"
+  [[menu.main]]
+    weight = 3
+    identifier = "featured"
+    name = "Featured"
+    url = "/featured/"
+    title = "Guest appearances"
+  [[menu.main]]
+    weight = 4
+    identifier = "about"
+    name = "About"
+    url = "/about/"
+    title = "About Gallo"
+  [[menu.main]]
+    weight = 5
+    identifier = "faq"
+    name = "FAQ"
+    url = "/faq/"
+    title = "Frequently asked questions"
+  [[menu.main]]
+    weight = 6
+    identifier = "contact"
+    name = "Contact"
+    url = "/contact/"
+    title = "Get in touch"
+[module]
+  [module.hugoVersion]
+    min = "0.128.0"
 
 [params]
-  # Author and description
-  author = "Author Name" # placeholder: string
-  description = "Insert your site description here" # placeholder: string
+  # site default theme ["auto", "light", "dark"]
+  defaultTheme = "auto"
+  # public git repo url only then enableGitInfo is true
+  gitRepo = ""
+  # which hash function used for SRI, when empty, no SRI is used
+  # ["sha256", "sha384", "sha512", "md5"]
+  fingerprint = ""
+  # date format
+  dateFormat = "2006-01-02"
+  # website title for Open Graph and Twitter Cards
+  title = "Gallo Chingon"
+  # website description for RSS, SEO, Open Graph and Twitter Cards
+  description = "Writing, guest appearances, archived and current podcast episodes."
+  # website images for Open Graph and Twitter Cards
+  images = []
 
-  # Theme view system default setting
-  listViewDefault = "list" # placeholder: string, options: "list", "grid"
+  # Author config
+  [params.author]
+    name = "Gallo Chingon"
+    email = "el.gallo.cochino@gmail.com"
+    link = "/about/"
+    [params.author.image]
+      src = "images/bout.png"
+      alt = "Portrait of Gallo Chingon"
+      shape = "oval"  # options are
+  [params.themeColors]
+    unifySingleColors = false
+    unifiedLight = "warning"
+    unifiedDark = "warning"
+    heroTocLight = "warning"
+    heroTocDark = "warning"
+    heading1Light = "success"
+    heading1Dark = "success"
+    heading2Light = "secondary"
+    heading2Dark = "secondary"
+    heading3Light = "rose"
+    heading3Dark = "rose"
 
-  # Color scheme options
-  # Available schemes: "tokyo-night", "tomorrow-night-blue", "solarized"
-  # Default is "tokyo-night".
-  # Use boolean flags for modes: colorful_mode, gradient_mode (only one can be true).
-  color_schemes = ["tokyo-night", "tomorrow-night-blue", "solarized"] # placeholder: array of strings
-  color_scheme_default = "tokyo-night" # placeholder: string, must be one of the color_schemes
-  colorful_mode = false # placeholder: boolean
-  gradient_mode = false # placeholder: boolean
+  # Header config
+  [params.header]
+    # desktop header mode ["fixed", "normal", "auto"]
+    desktopMode = "fixed"
+    # mobile header mode ["fixed", "normal", "auto"]
+    mobileMode = "auto"
+    [params.header.scroll]
+      hideOnScroll = false
+      gradientOnScroll = true
+      gradientPrimary = "#6f1022"
+      gradientSecondary = "#d7a52d"
+      gradientTertiary = ""
+    # Header title config
+    [params.header.title]
+      # URL of the LOGO
+      logo = ""
+      # title name
+      name = "Gallo Chingon"
+      # you can add extra information before the name (HTML format is supported), such as icons
+      pre = ""
+      # you can add extra information after the name (HTML format is supported), such as icons
+      post = ""
+      # whether to use typeit animation for title name
+      typeit = false
 
-  # Navigation bar behavior
-  navbar_hide_on_scroll = true # placeholder: boolean
+  # Footer config
+  [params.footer]
+    enable = true
+    # Custom content (HTML format is supported)
+    custom = ""
+    # whether to show Hugo and theme info
+    hugo = true
+    # whether to show copyright info
+    copyright = true
+    # whether to show the author
+    author = true
+    # site creation time
+    since = 2022
+    # ICP info only in China (HTML format is supported)
+    icp = ""
+    # license info (HTML format is supported)
+    license= ""
 
-  # Table of Contents sidebar features
-  toc_sticky = true # placeholder: boolean
-  toc_highlight_active_section = true # placeholder: boolean
-  toc_smooth_scroll = true # placeholder: boolean
+  # Section (all posts) page config
+  [params.section]
+    # special amount of posts in each section page
+    paginate = 20
+    # date format (month and day)
+    dateFormat = "01-02"
+    # amount of RSS pages
+    rss = 10
 
-  # Search overlay configuration
-  search_overlay_blur = true # placeholder: boolean
+  # List (category or tag) page config
+  [params.list]
+    # special amount of posts in each list page
+    paginate = 20
+    # date format (month and day)
+    dateFormat = "01-02"
+    # amount of RSS pages
+    rss = 10
 
-  # Hero image system configurations
-  post_hero_image_display = "background" # placeholder: string, options: "background", "normal"
-  list_hero_image_fallback_priority_1 = "youtube_id" # placeholder: string, options: "youtube_id", "spotify_id", "post_image"
-  list_hero_image_fallback_priority_2 = "spotify_id" # placeholder: string, options: "youtube_id", "spotify_id", "post_image"
-  list_hero_image_fallback_priority_3 = "post_image" # placeholder: string, options: "youtube_id", "spotify_id", "post_image"
+  # App icon config
+  [params.app]
+    # optional site title override for the app when added to an iOS home screen or Android launcher
+      title = "Gallo Chingon Podcast"
+    # whether to omit favicon resource links
+    noFavicon = false
+    # modern SVG favicon to use in place of older style .png and .ico files
+    svgFavicon = ""
+    # Android browser theme color
+    themeColor = "#eceff4"
+    # Safari mask icon color
+    iconColor = "#5e81ac"
+    # Windows v8-11 tile color
+    tileColor = "#1a1b26"
 
-  # Admonition types
-  admonitions = ["note", "tip", "info", "warning", "danger", "success"] # placeholder: array of strings
+  # Security config
+  [params.security]
+    # Content-Security-Policy meta tag for when HTTP headers cannot be set
+    # https://content-security-policy.com/examples/meta/
+    # contentSecurityPolicy = "default-src 'self'"
 
-  # Syntax highlighting style
-  syntax_highlight_style = "tokyonight-night" # placeholder: string, e.g., "monokai", "github", "tokyonight-night"
+  # Search config
+  [params.search]
+    enable = true
+    # type of search engine ["lunr", "algolia", "fuse", "pagefind"]
+    type = "fuse"
+    # max index length of the chunked content
+    contentLength = 4000
+    # placeholder of the search bar
+    placeholder = ""
+    # max number of results length
+    maxResultLength = 10
+    # snippet length of the result
+    snippetLength = 30
+    # HTML tag name of the highlight part in results
+    highlightTag = "em"
+    # whether to use the absolute URL based on the baseURL in search index
+    absoluteURL = false
+    [params.search.algolia]
+      index = ""
+      appID = ""
+      searchKey = ""
+    [params.search.fuse]
+      # https://fusejs.io/api/options.html
+      isCaseSensitive = false
+      minMatchCharLength = 2
+      findAllMatches = false
+      location = 0
+      threshold = 0.3
+      distance = 100
+      ignoreLocation = false
+    [params.search.pagefind]
+      # Pagefind base path (run "npx pagefind --site public" after hugo build)
+      basePath = "/_pagefind/"
 
-  # SEO configurations
-  seo_structured_data = ["Article", "WebSite", "Person", "BreadcrumbList"] # placeholder: array of strings
-  seo_meta_tags = true # placeholder: boolean
+  # Home page config
+  [params.home]
+    # amount of RSS pages
+    rss = 10
+    # Home page profile
+    [params.home.profile]
+      enable = true
+      # Gravatar Email for preferred avatar in home page
+      gravatarEmail = ""
+      # URL of avatar shown in home page
+      avatarURL = ""
+      # title shown in home page (HTML format is supported)
+      title = "Gallo Chingon"
+      # subtitle shown in home page (HTML format is supported)
+      subtitle = "Writing, guest appearances, archived and current podcast episodes."
+      # whether to use typeit animation for subtitle
+      typeit = true
+      # whether to show social links
+      social = true
+      # disclaimer (HTML format is supported)
+      disclaimer = "<b><i>Sucias (are my Favorite)</i></b> podcast is retired. Archived episodes are preserved here as while new writing and guest appearances stay active."
+    # Home page posts
+    [params.home.posts]
+      enable = true
+      # special amount of posts in each home posts page
+      paginate = 6
+  # Social config in home page
+  [params.social]
+    Bandcamp = ""
+    Behance = ""
+    Bilibili = ""
+    Bitbucket = ""
+    Codeberg = ""
+    Codepen = ""
+    Deviantart = ""
+    Devto = ""
+    Discord = ""
+    DiscordInvite = ""
+    Douban = ""
+    Dribbble = ""
+    Email = "el.gallo.cochino@gmail.com"
+    Facebook = ""
+    Fivehundredpx = ""
+    Flickr = ""
+    Foursquare = ""
+    FreeCodeCamp = ""
+    GitHub = "gchingon"
+    Gitea = ""
+    Gitlab = ""
+    Goodreads = ""
+    Googlescholar = ""
+    HackTheBox = ""
+    Hackernews = ""
+    HuggingFace = ""
+    Instagram = "gallo.chingon.clips"
+    Jsfiddle = ""
+    Kaggle = ""
+    Keybase = ""
+    Kickstarter = ""
+    Lastfm = ""
+    LeetCode = ""
+    LeetCodeCN = ""
+    Lichess = ""
+    Linkedin = ""
+    Malt = ""
+    Mastodon = ""
+    Matrix = ""
+    MediaWiki = ""
+    Medium = ""
+    Mix = ""
+    ORCID = ""
+    Odnoklassniki = ""
+    Patreon = ""
+    Paypal = ""
+    Phone = ""
+    Pinterest = ""
+    Pleroma = ""
+    Plume = ""
+    Quora = ""
+    RSS = ""
+    Reddit = ""
+    Researchgate = ""
+    RootMe = ""
+    Skype = ""
+    Slidershare = ""
+    Snapchat = ""
+    Soundcloud = ""
+    Spotify = ""
+    Stackoverflow = ""
+    Steam = ""
+    Strava = ""
+    Telegram = ""
+    Thingiverse = ""
+    Threads = ""
+    TikTok = "gallo.salvaje.chingon"
+    TryHackMe = ""
+    Tumblr = ""
+    Twitch = "gall0ching0n"
+    VK = ""
+    Vine = ""
+    Weibo = ""
+    Whatsapp = ""
+    Wordpress = ""
+    X = ""
+    XMPP = ""
+    Xing = ""
+    Youtubechannel = ""
+    Youtubecustom = ""
+    Youtubelegacy = ""
 
-  # Build pipeline and optimization settings
-  image_lazy_loading = true # placeholder: boolean
-  script_deferred = true # placeholder: boolean
-  critical_css = true # placeholder: boolean
+  # Page global config
+  [params.page]
+    # whether to hide a page from home page
+    hiddenFromHomePage = false
+    # whether to hide a page from search results
+    hiddenFromSearch = false
+    # whether to enable twemoji
+    twemoji = false
+    # whether to enable lightgallery
+    lightgallery = false
+    # whether to enable the ruby extended syntax
+    ruby = true
+    # whether to enable the fraction extended syntax
+    fraction = true
+    # whether to enable the fontawesome extended syntax
+    fontawesome = true
+    # whether to show link to Raw Markdown content of the content
+    linkToMarkdown = true
+    # whether to show the full text content in RSS
+    rssFullText = false
+    # Table of the contents config
+    [params.page.toc]
+      # whether to enable the table of the contents
+      enable = true
+      # whether to keep the static table of the contents in front of the post
+      keepStatic = false
+      # whether to make the table of the contents in the sidebar automatically collapsed
+      auto = true
+    # Code config
+    [params.page.code]
+      # whether to show the copy button of the code block
+      copy = true
+      # the maximum number of lines of displayed code by default
+      maxShownLines = 50
+    [params.page.code.render]
+      goat = true
+      mermaid = true
+    # KaTeX mathematical formulas config (KaTeX https://katex.org/)
+    [params.page.math]
+      enable = false
+      # default inline delimiter is $ ... $ and \( ... \)
+      inlineLeftDelimiter = ""
+      inlineRightDelimiter = ""
+      # default block delimiter is $$ ... $$, \[ ... \], \begin{equation} ... \end{equation} and some other functions
+      blockLeftDelimiter = ""
+      blockRightDelimiter = ""
+      # KaTeX extension copy_tex
+      copyTex = true
+      # KaTeX extension mhchem
+      mhchem = true
+    # Social share links in post page
+    [params.page.share]
+      enable = true
+      X = true
+      Threads = true
+      Facebook = true
+      Linkedin = true
+      Whatsapp = true
+      Pinterest = true
+      Tumblr = true
+      HackerNews = false
+      Reddit = true
+      VK = false
+      Buffer = false
+      Line = false
+      Instapaper = false
+      Pocket = false
+      Flipboard = false
+      Blogger = false
+      Odnoklassniki = false
+      Evernote = false
+      Trello = false
+      Mix = true
+      Telegram = true
 
-  # Social Share Settings
-  # Placeholder: boolean (true/false) for enabling/disabling sharing buttons
-  share_facebook = true
-  share_linkedin = true
-  share_pinterest = true
-  share_reddit = true
-  share_telegram = true
-  share_twitter = true
-  share_whatsapp = true
-  share_email = true
+    # Comment config
+    [params.page.comment]
+      enable = true
+      types = ["blog", "episodes", "featured"]
+      # Disqus comment config (https://disqus.com/)
+      [params.page.comment.disqus]
+        enable = false
+        # Disqus shortname to use Disqus in posts
+        shortname = ""
+      # Gitalk comment config (https://github.com/gitalk/gitalk)
+      [params.page.comment.gitalk]
+        enable = false
+        owner = ""
+        repo = ""
+        clientId = ""
+        clientSecret = ""
+      # Valine comment config (https://github.com/xCss/Valine)
+      [params.page.comment.valine]
+        enable = true
+        appId = ""
+        appKey = ""
+        placeholder = ""
+        avatar = "mp"
+        meta= ""
+        pageSize = 10
+        # automatically adapt the current theme i18n configuration when empty
+        lang = ""
+        visitor = true
+        recordIP = true
+        highlight = true
+        enableQQ = false
+        serverURLs = ""
+        # emoji data file name, default is "google.yml"
+        # ["apple.yml", "google.yml", "facebook.yml", "twitter.yml"]
+        # located in "themes/tokyo-mistakes/assets/lib/valine/emoji/" directory
+        # you can store your own data files in the same path under your project:
+        # "assets/lib/valine/emoji/"
+        # ["apple.yml", "google.yml", "facebook.yml", "twitter.yml"]
+        emoji = ""
 
-  # Country/Region specific social links or services
-  share_alipay = false # China
-  share_amazon = false # Global, but region-specific storefronts
-  share_amazon_aws = false # Global
-  share_apple = false # Global
-  share_appletv = false # Global
-  share_applemusic = false # Global
-  share_applepodcasts = false # Global
-  share_baidu = false # China
-  share_bilibili = false # Primarily China, also global presence
-  share_codepen = false # Global
-  share_douban = false # China
-  share_douyin = false # China (TikTok's Chinese version)
-  share_dribbble = false # Global
-  share_facebook_messenger = false # Global
-  share_figma = false # Global
-  share_foursquare = false # Global, check availability by region
-  share_google_drive = false # Global
-  share_google_plus = false # Deprecated, but historically global
-  share_instagram = false # Global
-  share_line = false # Asia, particularly Japan, Taiwan, Thailand, Indonesia
-  share_linkedin = true # Global
-  share_linkedin_ad_tracker = false # placeholder: string, for LinkedIn ad tracker ID
-  share_mastodon = false # Global, decentralized
-  share_medium = false # Global
-  share_messenger = false # Global
-  share_naver = false # South Korea
-  share_okid = false # Russia
-  share_pinterest = false # Global
-  share_pocket = false # Global
-  share_qq = false # China
-  share_reddit = false # Global
-  share_sinaweibo = false # China
-  share_slack = false # Global
-  share_snapchat = false # Global
-  share_spotify = false # Global
-  share_stack_overflow = false # Global
-  share_steam = false # Global
-  share_stumbleupon = false # Deprecated, was global
-  share_telegram = false # Global
-  share_tencent_wechat = false # China
-  share_tiktok = false # Global
-  share_tumblr = false # Global
-  share_twitch = false # Global
-  share_twitter = false # Global
-  share_viber = false # Global, popular in Eastern Europe, SE Asia, Middle East
-  share_vk = false # Russia and CIS countries
-  share_wechat = false # China
-  share_whatsapp = false # Global
-  share_xing = false # Primarily German-speaking countries, Central Europe
-  share_yahoo = false # Global, strong presence in Japan
-  share_yandex = false # Russia and CIS countries
-  share_youtube = false # Global
+      # Facebook comment config (https://developers.facebook.com/docs/plugins/comments)
+      [params.page.comment.facebook]
+        enable = false
+        width = "100%"
+        numPosts = 10
+        appId = ""
+        # automatically adapt the current theme i18n configuration when empty
+        languageCode = ""
+      # Telegram comments config (https://comments.app/)
+      [params.page.comment.telegram]
+        enable = false
+        siteID = ""
+        limit = 5
+        height = ""
+        color = ""
+        colorful = true
+        dislikes = false
+        outlined = false
+      # Commento comment config (https://commento.io/)
+      [params.page.comment.commento]
+        enable = false
+      # utterances comment config (https://utteranc.es/)
+      [params.page.comment.utterances]
+        enable = false
+        # owner/repo
+        repo = "schingon/tokyo-mistakes"
+        issueTerm = "pathname"
+        label = "comments"
+        lightTheme = "github-light"
+        darkTheme = "github-dark"
+      # giscus comment config (https://giscus.app/)
+      [params.page.comment.giscus]
+        # You can refer to the official documentation of giscus to use the following configuration.
+        enable = false
+        repo = ""
+        repoId = ""
+        category = "Announcements"
+        categoryId = ""
+        # automatically adapt the current theme i18n configuration when empty
+        lang = ""
+        mapping = "pathname"
+        reactionsEnabled = "1"
+        emitMetadata = "0"
+        inputPosition = "bottom"
+        lazyLoading = false
+        lightTheme = "light"
+        darkTheme = "dark"
+    # Third-party library config
+    [params.page.library]
+      [params.page.library.css]
+        # someCSS = "some.css"
+        # located in "assets/"
+        # someCSS = "https://cdn.example.com/some.css"
+      [params.page.library.js]
+        # someJavascript = "some.js"
+        # located in "assets/"
+        # someJavascript = "https://cdn.example.com/some.js"
+    # Page SEO config
+    [params.page.seo]
+      # image URL
+      images = []
+      # Publisher info
+      [params.page.seo.publisher]
+        name = ""
+        logoUrl = ""
 
-  # Comment System Configuration (placeholder values)
-  [params.comment]
-    # Giscus Configuration
-    # Refer to Giscus documentation for setup: https://giscus.app/
-    # Steps:
-    # 1. Create a GitHub Discussion repository.
-    # 2. Configure Giscus app on your GitHub repository.
-    # 3. Obtain your Giscus repo and category information.
-    giscus_repo = "placeholder/repo" # placeholder: string, format: "owner/repo"
-    giscus_repo_id = "placeholder_repo_id" # placeholder: string
-    giscus_category = "General" # placeholder: string, the category name for discussions
-    giscus_category_id = "placeholder_category_id" # placeholder: string
-    giscus_mapping = "pathname" # placeholder: string, options: "pathname", "url", "title", "og:title"
-    giscus_strict_theme = false # placeholder: boolean, enforce theme strictly
-    giscus_theme = "preferred-color-scheme" # placeholder: string, options: "light", "dark", "transparent_theme", "preferred-color-scheme"
-    giscus_reactions_enabled = "1" # placeholder: string, options: "0" (disabled), "1" (enabled)
-    giscus_emit_metadata = "0" # placeholder: string, options: "0" (disabled), "1" (enabled)
-    giscus_input_position = "top" # placeholder: string, options: "top", "bottom"
-    giscus_loading = "lazy" # placeholder: string, options: "lazy", "eager"
-    giscus_cross_origin = "anonymous" # placeholder: string, options: "anonymous", "use-credentials"
+  # TypeIt config
+  [params.typeit]
+    # typing speed between each step (measured in milliseconds)
+    speed = 100
+    # blinking speed of the cursor (measured in milliseconds)
+    cursorSpeed = 1000
+    # character used for the cursor (HTML format is supported)
+    cursorChar = "|"
+    # cursor duration after typing finishing (measured in milliseconds, "-1" means unlimited)
+    duration = -1
 
-    # Other comment systems (placeholders and setup guidance)
-    # disqus_enable = false # placeholder: boolean
-    # disqus_shortname = "placeholder_disqus_shortname" # placeholder: string
+  # Site verification code for Google/Bing/Yandex/Pinterest/Baidu
+  [params.verification]
+    google = ""
+    bing = ""
+    pinterest = ""
 
-    # utterances_enable = false # placeholder: boolean
-    # utterances_repo = "placeholder/repo" # placeholder: string, format: "owner/repo"
-    # utterances_issue_term = "pathname" # placeholder: string, options: "pathname", "url", "title", "issue-number"
-    # utterances_theme = "github-light" # placeholder: string, options: "github-light", "github-dark", "preferred-color-scheme"
-    # utterances_label = "comments" # placeholder: string, label for issues created
+  # Site SEO config
+  [params.seo]
+    # image URL
+    image = ""
+    # thumbnail URL
+    thumbnailUrl = ""
 
-    # valine_enable = false # placeholder: boolean
-    # valine_appId = "placeholder_app_id" # placeholder: string
-    # valine_appKey = "placeholder_app_key" # placeholder: string
-    # valine_serverURLs = "placeholder_server_urls" # placeholder: string, comma-separated
-    # valine_placeholder = "Leave your comment here..." # placeholder: string
-    # valine_avatar = "retro" # placeholder: string, options: "constructor", "lb", "gravatar", "monsterid", "wavatar", "retro", "robohash", "identicon", "mm"
-    # valine_lang = "en" # placeholder: string
+  # Analytics config
+  [params.analytics]
+    # Google Analytics
+    [params.analytics.google]
+      id = ""
+      # whether to respect the browser’s “do not track” setting
+      respectDoNotTrack = false
+    # Fathom Analytics
+    [params.analytics.fathom]
+      id = ""
+      # server url for your tracker if you're self hosting
+      server = ""
+    # Plausible Analytics
+    [params.analytics.plausible]
+      dataDomain = ""
+    # Yandex Metrica
+    [params.analytics.yandexMetrica]
+      id = ""
 
-    # Facebook Comments Configuration
-    # facebook_enable = false # placeholder: boolean
-    # facebook_appid = "placeholder_facebook_app_id" # placeholder: string
+  # Cookie consent config
+  [params.cookieconsent]
+    enable = false
+    # text strings used for Cookie consent banner
+    [params.cookieconsent.content]
+      message = ""
+      dismiss = ""
+      link = ""
 
-    # Cusdis Configuration
-    # cusdis_enable = false # placeholder: boolean
-    # cusdis_app_id = "placeholder_cusdis_app_id" # placeholder: string
-    # cusdis_script_src = "https://example.com/widget.js" # placeholder: string
+  # CDN config for third-party library files
+  [params.cdn]
+    # CDN data file name, disabled by default
+    # ["jsdelivr.yml"]
+    # located in "themes/tokyo-mistakes/assets/data/cdn/" directory
+    # you can store your own data files in the same path under your project:
+    # "assets/data/cdn/"
+    # ["jsdelivr.yml"]
+    # "assets/data/cdn/"
+    data = "jsdelivr.yml"
 
-# Theme features synopsis and pruning decisions will follow in the next steps.
+  # Compatibility config
+  [params.compatibility]
+    # whether to use Polyfill.io to be compatible with older browsers
+    polyfill = false
+    # whether to use object-fit-images to be compatible with older browsers
+    objectFit = false

@@ -5,7 +5,7 @@ date: 2019-12-01T21:57:40+08:00
 lastmod: 2020-01-01T16:45:40+08:00
 draft: false
 author: "Dillon"
-authorLink: "https://schingon.com/author"
+authorLink: "https://dillonzq.com"
 description: "This article shows the basic Markdown syntax and format."
 images: []
 resources:
@@ -25,7 +25,7 @@ This article offers a sample of basic Markdown syntax that can be used in Hugo c
 {{< admonition >}}
 This article is a shameful copy of the great [Grav original page](https://learn.getgrav.org/content/markdown).
 
-If you want to know about the extended Markdown syntax of **tokyo-mistakes** theme, please read [extended Markdown syntax page](../theme-documentation-content#extended-markdown-syntax).
+If you want to know about the extended Markdown syntax of **LoveIt** theme, please read [extended Markdown syntax page](../theme-documentation-content#extended-markdown-syntax).
 {{< /admonition >}}
 
 Let's face it: Writing content for the Web is tiresome. WYSIWYG editors help alleviate this task, but they generally result in horrible code, or worse yet, ugly web pages.
@@ -54,7 +54,7 @@ John Gruber, the author of Markdown, puts it like this:
 Without further delay, let us go over the main elements of Markdown and what the resulting HTML looks like!
 
 {{< admonition tip >}}
-:(far fa-bookmark fa-fw): Bookmark this page for easy future reference!
+:(far fa-bookmark): Bookmark this page for easy future reference!
 {{< /admonition >}}
 
 ## 1 Headings
@@ -760,5 +760,5 @@ With a reference later in the document defining the URL location:
 [id]: https://octodex.github.com/images/dojocat.jpg  "The Dojocat"
 
 {{< admonition tip >}}
-**tokyo-mistakes** theme has [special shortcode for image](../theme-documentation-extended-shortcodes#image), which provides more features.
+**LoveIt** theme has [special shortcode for image](../theme-documentation-extended-shortcodes#image), which provides more features.
 {{< /admonition >}}

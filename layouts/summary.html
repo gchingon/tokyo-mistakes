@@ -1,0 +1,44 @@
+{{- $params := .Params | merge .Site.Params.page -}}
+{{- $media := partial "function/card-media.html" . -}}
+{{- $mediaResource := false -}}
+{{- if and $media (not (urls.Parse $media).Host) -}}
+    {{- $mediaResource = dict "Path" (strings.TrimPrefix "/" $media) "Resources" .Resources | partial "function/resource.html" -}}
+{{- end -}}
+{{- $mediaURL := $media -}}
+{{- with $mediaResource -}}
+    {{- $mediaURL = .RelPermalink -}}
+{{- end -}}
+{{- $rawSummary := .Params.excerpt | default .Params.summary | default .Params.description | default .Summary | default .Plain -}}
+{{- if not (.Params.excerpt | default .Params.summary | default .Params.description) -}}
+    {{- $rawSummary = .RawContent | replaceRE `(?is)\{\%\s*include\s+video[^%]*\%\}` "" | replaceRE `(?is)<iframe.*?</iframe>` "" | replaceRE `(?is)!\[[^\]]*\]\([^)]+\)` "" | replaceRE `(?is)\{\%\s*include\s+figure[^%]*\%\}` "" | plainify | replaceRE `\s+` " " | strings.TrimSpace -}}
+{{- end -}}
+{{- $summary := $rawSummary | plainify | replaceRE `\s+` " " | strings.TrimSpace | truncate 220 -}}
+
+<article class="summary-card summary-{{ .Type }}" itemscope itemtype="http://schema.org/Article">
+    {{- with $mediaURL -}}
+        <a class="summary-media" href="{{ $.RelPermalink }}" aria-label="{{ $.Title }}" style="--card-image: url('{{ . | safeURL }}')"></a>
+    {{- end -}}
+    <div class="summary-shell">
+        <h2 class="single-title" itemprop="name headline">
+            <a href="{{ .RelPermalink }}">{{ .Title | emojify }}</a>
+        </h2>
+
+        <div class="post-meta">
+            {{- with .Date -}}
+                <span class="post-publish"><time datetime="{{ .Format "2006-01-02" }}">{{ .Format ($.Site.Params.dateFormat | default "2006-01-02") }}</time></span>
+            {{- end -}}
+            {{- with .Params.categories -}}
+                <span class="post-category">{{ delimit . ", " }}</span>
+            {{- end -}}
+            {{- if and (ne .Type "blog") .Params.tags -}}
+                <span class="post-tags-inline">{{ delimit (first 2 .Params.tags) ", " }}</span>
+            {{- end }}
+        </div>
+
+        {{- with $summary -}}
+            <div class="content">
+                <p>{{ . }}</p>
+            </div>
+        {{- end -}}
+    </div>
+</article>

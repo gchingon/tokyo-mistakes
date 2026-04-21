@@ -1,0 +1,136 @@
+{{- define "title" }}{{ .Title }} - {{ .Site.Title }}{{ end -}}
+
+{{- define "content" -}}
+    {{- $params := .Scratch.Get "params" -}}
+    {{- $typeLabels := dict "episodes" "Archived Episode" "blog" "Essay" "featured" "Guest Appearance" -}}
+    {{- $typeLabel := index $typeLabels .Type | default "Page" -}}
+    {{- if eq .Type "blog" -}}
+        {{- $typeLabel = "" -}}
+    {{- end -}}
+    {{- $showMeta := $params.showMeta | default (ne .Type "page") -}}
+    {{- $showIntro := ne .Type "page" -}}
+    {{- $isAboutPage := eq .RelPermalink "/about/" -}}
+    {{- $heroMedia := partial "function/card-media.html" . -}}
+    {{- $postMedia := partial "function/post-media.html" . -}}
+    {{- $hasEmbeddedMedia := index $postMedia "HasMedia" | default false -}}
+    {{- $postEmbed := index $postMedia "Embed" -}}
+    {{- if and (ne .Type "page") $heroMedia -}}
+        {{- $showIntro = false -}}
+    {{- end -}}
+    {{- $toc := $params.toc -}}
+    {{- if eq $toc true -}}
+        {{- $toc = .Site.Params.page.toc | default dict -}}
+    {{- else if eq $toc false -}}
+        {{- $toc = dict "enable" false -}}
+    {{- end -}}
+    {{- $hasTOC := gt (len (findRE `<a href="#` .TableOfContents)) 0 -}}
+    {{- if $isAboutPage -}}
+        {{- $authorImage := .Site.Params.author.image | default dict -}}
+        <div class="about-page-shell">
+            {{- with $authorImage.src -}}
+                <aside class="about-page-media about-media about-media-{{ $authorImage.shape | default `oval` }}">
+                    {{- dict "Src" . "Alt" ($authorImage.alt | default $.Site.Params.author.name) "Resources" $.Resources "Linked" false | partial "plugin/img.html" -}}
+                </aside>
+            {{- end -}}
+            <article class="page single single-tokyo single-{{ .Type }}">
+    {{- else -}}
+            {{- if and (ne $toc.enable false) $hasTOC -}}
+                <div class="toc" id="toc-auto">
+                    <h2 class="toc-title">{{ T "contents" }}</h2>
+                    <div class="toc-content{{ if eq $toc.auto false }} always-active{{ end }}" id="toc-content-auto"></div>
+                </div>
+            {{- end -}}
+            <article class="page single single-tokyo single-{{ .Type }}">
+    {{- end -}}
+        {{- with $postEmbed -}}
+            {{ . | safeHTML }}
+        {{- end -}}
+        {{- if not (and (in (slice "episodes" "featured") .Type) $hasEmbeddedMedia) -}}
+            {{- partial "hero.html" . -}}
+        {{- end -}}
+        {{- if and $isAboutPage (and (ne $toc.enable false) $hasTOC) -}}
+            <div class="toc" id="toc-auto">
+                <h2 class="toc-title">{{ T "contents" }}</h2>
+                <div class="toc-content{{ if eq $toc.auto false }} always-active{{ end }}" id="toc-content-auto"></div>
+            </div>
+        {{- end -}}
+        {{- if $showIntro -}}
+            <header class="single-intro">
+                <div class="single-heading">
+                    {{- with $typeLabel -}}
+                        <span class="section-kicker">{{ . }}</span>
+                    {{- end -}}
+                    <h1 class="single-title">{{ .Title | emojify }}</h1>
+                    {{- with $params.subtitle -}}
+                        <h2 class="single-subtitle">{{ . }}</h2>
+                    {{- end -}}
+                </div>
+
+                {{- if $showMeta -}}
+                    <div class="post-meta">
+                        {{- with .Date -}}
+                            <span><time datetime="{{ .Format "2006-01-02" }}">{{ .Format ($.Site.Params.dateFormat | default "2006-01-02") }}</time></span>
+                        {{- end -}}
+                        <span>{{ T "readingTime" .ReadingTime }}</span>
+                    </div>
+                {{- end -}}
+
+                {{- if eq .Type "episodes" -}}
+                    <div class="single-status">
+                        <strong>Archive note:</strong> the original podcast feed is retired, so platform embeds have been removed and this page now preserves the writing and context.
+                    </div>
+                {{- end -}}
+            </header>
+        {{- end -}}
+
+        {{- if and (eq .Type "page") (eq .File.BaseFileName "contact") -}}
+            {{- $contactItems := .Site.Params.social | default dict -}}
+            {{- with .Params.contact -}}
+                {{- $contactItems = merge $contactItems . -}}
+            {{- end -}}
+            {{- partial "social-links.html" (dict "Items" $contactItems "Scratch" .Scratch "Class" "contact-social-links") -}}
+        {{- end -}}
+
+        {{- if and (ne $toc.enable false) $hasTOC -}}
+            <div class="details toc" id="toc-static" data-kept="{{ if $toc.keepStatic }}true{{ end }}">
+                <div class="details-summary toc-title">
+                    <span>{{ T "contents" }}</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static">
+                    {{- dict "Content" .TableOfContents "Ruby" $params.ruby "Fraction" $params.fraction "Fontawesome" $params.fontawesome | partial "function/content.html" | safeHTML -}}
+                </div>
+            </div>
+        {{- end -}}
+
+        {{- $content := .Content -}}
+        {{- $content = replaceRE `(?is)<!--\s*<iframe.*?</iframe>\s*-->` `` $content -}}
+        {{- $content = replaceRE `(?is)<p>\s*<img[^>]*(?:title|alt)="(?:cover|Cover)"[^>]*>\s*</p>` `` $content -}}
+        {{- $content = replaceRE `(?is)<p>\s*<img[^>]*(?:alt|title)="[^"]*"[^>]*(?:title|alt)="(?:cover|Cover)"[^>]*>\s*</p>` `` $content -}}
+        {{- if $hasEmbeddedMedia -}}
+            {{- $content = replaceRE `(?is)<p>\s*\{%\s*include\s+video[^%]*%\}\s*</p>` `` $content -}}
+            {{- $content = replaceRE `(?is)<p>\s*<a[^>]+href="https?://(?:www\.)?(?:youtube\.com/watch\?v=[^"]+|youtu\.be/[^"]+)"[^>]*>\s*Watch on YouTube\s*</a>\s*</p>` `` $content -}}
+            {{- $content = replaceRE `(?is)<p>\s*Watch the full video on YouTube:\s*https?://(?:www\.)?(?:youtube\.com/watch\?v=\S+|youtu\.be/\S+)\s*</p>` `` $content -}}
+        {{- end -}}
+        <div class="content" id="content">
+            {{- dict "Content" $content "Ruby" $params.ruby "Fraction" $params.fraction "Fontawesome" $params.fontawesome | partial "function/content.html" | safeHTML -}}
+        </div>
+
+        {{- partial "single/footer.html" . -}}
+        {{- $commentTypes := .Site.Params.page.comment.types | default (slice "blog" "episodes" "featured") -}}
+        {{- $showComments := and .Site.Params.page.comment.enable (in $commentTypes .Type) -}}
+        {{- with .Params.comment -}}
+            {{- if eq . true -}}
+                {{- $showComments = true -}}
+            {{- else if eq . false -}}
+                {{- $showComments = false -}}
+            {{- end -}}
+        {{- end -}}
+        {{- if $showComments -}}
+            {{- partial "comment.html" . -}}
+        {{- end -}}
+    </article>
+    {{- if $isAboutPage -}}
+        </div>
+    {{- end -}}
+{{- end -}}

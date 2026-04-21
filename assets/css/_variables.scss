@@ -15,43 +15,72 @@ $global-font-size: 16px !default;
 $global-font-weight: 400 !default;
 $global-line-height: 1.5rem !default;
 
+// Tokyo Mistakes palette
+$tm-light-paper: #eceff4 !default;
+$tm-light-surface: #e5e9f0 !default;
+$tm-light-surface-strong: #d8dee9 !default;
+$tm-light-ink: #2e3440 !default;
+$tm-light-ink-muted: #4c566a !default;
+$tm-light-accent: #5e81ac !default;
+$tm-light-accent-soft: #81a1c1 !default;
+$tm-light-danger: #bf616a !default;
+$tm-light-warm: #d08770 !default;
+$tm-light-warning: #ebcb8b !default;
+$tm-light-success: #a3be8c !default;
+$tm-light-secondary: #b48ead !default;
+
+$tm-dark-paper: #1a1b26 !default;
+$tm-dark-surface: #1f2335 !default;
+$tm-dark-surface-strong: #24283b !default;
+$tm-dark-surface-elevated: #292e42 !default;
+$tm-dark-ink: #c0caf5 !default;
+$tm-dark-ink-muted: #a9b1d6 !default;
+$tm-dark-ink-subtle: #737aa2 !default;
+$tm-dark-accent: #7aa2f7 !default;
+$tm-dark-accent-soft: #89ddff !default;
+$tm-dark-danger: #f7768e !default;
+$tm-dark-warm: #ff9e64 !default;
+$tm-dark-warning: #e0af68 !default;
+$tm-dark-success: #9ece6a !default;
+$tm-dark-secondary: #bb9af7 !default;
+
 // Color of the background
-$global-background-color: #fff !default;
-$global-background-color-dark: #292a2d !default;
+$global-background-color: $tm-light-paper !default;
+$global-background-color-dark: $tm-dark-paper !default;
 
 // Color of the text
-$global-font-color: #161209 !default;
-$global-font-color-dark: #a9a9b3 !default;
+$global-font-color: $tm-light-ink !default;
+$global-font-color-dark: $tm-dark-ink !default;
 
 // Color of the secondary text
-$global-font-secondary-color: #a9a9b3 !default;
-$global-font-secondary-color-dark: #5d5d5f !default;
+$global-font-secondary-color: $tm-light-ink-muted !default;
+$global-font-secondary-color-dark: $tm-dark-ink-subtle !default;
 
 // Color of the link
-$global-link-color: #161209 !default;
-$global-link-color-dark: #a9a9b3 !default;
+$global-link-color: $tm-light-ink !default;
+$global-link-color-dark: $tm-dark-ink !default;
 
 // Color of the hover link
-$global-link-hover-color: #2d96bd !default;
-$global-link-hover-color-dark: #fff !default;
+$global-link-hover-color: $tm-light-accent !default;
+$global-link-hover-color-dark: $tm-dark-accent-soft !default;
 
 // Color of the border
-$global-border-color: #f0f0f0 !default;
-$global-border-color-dark: #363636 !default;
+$global-border-color: $tm-light-surface-strong !default;
+$global-border-color-dark: $tm-dark-surface-elevated !default;
 // ========== Global ========== //
 
 // ========== Scrollbar ========== //
 // Color of the scrollbar
-$scrollbar-color: #87878d !default;
+$scrollbar-color: $tm-light-ink-muted !default;
 
 // Color of the hover scrollbar
-$scrollbar-hover-color: #a9a9b3 !default;
+$scrollbar-hover-color: $tm-light-accent !default;
 // ========== Scrollbar ========== //
 
 // ========== Selection ========== //
 // Color of the selected text
-$selection-color: rgba(53, 166, 247, 0.25) !default;
-$selection-color-dark: rgba(50, 112, 194, 0.4) !default;
+$selection-color: rgba(94, 129, 172, 0.22) !default;
+$selection-color-dark: rgba(122, 162, 247, 0.28) !default;
 // ========== Selection ========== //
 
 // ========== Header ========== //
@@ -63,16 +92,16 @@ $header-title-font-family: $global-font-family !default;
 $header-title-font-size: 1.5rem !default;
 
 // Color of the header background
-$header-background-color: #f8f8f8 !default;
-$header-background-color-dark: #252627 !default;
+$header-background-color: $tm-light-surface !default;
+$header-background-color-dark: $tm-dark-surface !default;
 
 // Color of the hover header item
-$header-hover-color: #161209 !default;
-$header-hover-color-dark: #fff !default;
+$header-hover-color: $tm-light-accent !default;
+$header-hover-color-dark: $tm-dark-accent-soft !default;
 
 // Color of the search background
-$search-background-color: #e9e9e9 !default;
-$search-background-color-dark: #363636 !default;
+$search-background-color: $tm-light-surface-strong !default;
+$search-background-color-dark: $tm-dark-surface-elevated !default;
 // ========== Header ========== //
 
 // ========== Single Content ========== //
@@ -81,34 +110,34 @@ $toc-title-font-size: 1.2rem !default;
 $toc-content-font-size: 0.875rem !default;
 
 // Color of the single link
-$single-link-color: #2d96bd !default;
-$single-link-color-dark: #55bde2 !default;
+$single-link-color: $tm-light-accent !default;
+$single-link-color-dark: $tm-dark-accent !default;
 
 // Color of the hover single link
-$single-link-hover-color: #ef3982 !default;
-$single-link-hover-color-dark: #bdebfc !default;
+$single-link-hover-color: $tm-light-danger !default;
+$single-link-hover-color-dark: $tm-dark-accent-soft !default;
 
 // Color of the table background
-$table-background-color: #fff !default;
-$table-background-color-dark: #272c34 !default;
+$table-background-color: $tm-light-paper !default;
+$table-background-color-dark: $tm-dark-surface-strong !default;
 
 // Color of the table thead
-$table-thead-color: #ededed !default;
-$table-thead-color-dark: #20252b !default;
+$table-thead-color: $tm-light-surface-strong !default;
+$table-thead-color-dark: $tm-dark-surface !default;
 
 // Color of the blockquote
-$blockquote-color: #6bd6fd !default;
-$blockquote-color-dark: #59c5ec !default;
+$blockquote-color: $tm-light-secondary !default;
+$blockquote-color-dark: $tm-dark-secondary !default;
 // ========== Single Content ========== //
 
 // ========== Pagination ========== //
 // Color of the link in pagination
-$pagination-link-color: #2d96bd !default;
-$pagination-link-color-dark: #a9a9b3 !default;
+$pagination-link-color: $tm-light-accent !default;
+$pagination-link-color-dark: $tm-dark-ink-muted !default;
 
 // Color of the hover link in pagination
-$pagination-link-hover-color: #000 !default;
-$pagination-link-hover-color-dark: #fff !default;
+$pagination-link-hover-color: $tm-light-ink !default;
+$pagination-link-hover-color-dark: $tm-dark-ink !default;
 // ========== Pagination ========== //
 
 // ========== Code ========== //
@@ -117,15 +146,15 @@ $code-font-family: "Source Code Pro", Menlo, Monaco, Consolas, "Liberation Mono"
 $code-font-size: .875rem !default;
 
 // Color of the code
-$code-color: #E74C3C !default;
-$code-color-dark: #E5BF78 !default;
+$code-color: $tm-light-danger !default;
+$code-color-dark: $tm-dark-warning !default;
 
 // Color of the code background
-$code-background-color: #f5f5f5 !default;
-$code-background-color-dark: #272C34 !default;
+$code-background-color: $tm-light-surface !default;
+$code-background-color-dark: $tm-dark-surface-strong !default;
 
-$code-info-color: #9c9c9c !default;
-$code-info-color-dark: #b1b0b0 !default;
+$code-info-color: $tm-light-ink-muted !default;
+$code-info-color-dark: $tm-dark-ink-subtle !default;
 
 // Code type list
 $code-type-list:
@@ -342,6 +371,7 @@ $admonition-color-list:
   "note" #448aff rgba(68, 138, 255, 0.1),
   "abstract" #00b0ff rgba(0, 176, 255, 0.1),
   "info" #00b8d4 rgba(83, 211, 230, 0.1),
+  "todo" #306cd6 rgba(48, 108, 214, 0.1),
   "tip" #00bfa5 rgba(0, 191, 165, 0.1),
   "success" #00c853 rgba(0, 200, 83, 0.1),
   "question" #64dd17 rgba(100, 221, 23, 0.1),

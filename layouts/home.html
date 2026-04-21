@@ -1,0 +1,63 @@
+{{- define "content" -}}
+    {{- $params := .Scratch.Get "params" -}}
+    {{- $profile := .Site.Params.home.profile -}}
+    {{- $sections := slice
+        (dict "key" "episodes" "title" "Episode Archive" "description" "Original podcast episodes kept online as a readable archive." "accent" "archive")
+        (dict "key" "blog" "title" "Writing" "description" "Essays, process notes, and off-the-rails train-of-thought posts." "accent" "writing")
+        (dict "key" "featured" "title" "Guest Spots" "description" "Conversations hosted elsewhere, from interviews to panel discussions." "accent" "featured")
+    -}}
+
+    <div class="page home home-tokyo">
+        {{- if ne $profile.enable false -}}
+            <section class="home-hero">
+                {{- partial "home/profile.html" . -}}
+            </section>
+        {{- end -}}
+
+        {{- if .Content -}}
+            <section class="home-intro single">
+                <div class="content" id="content">
+                    {{- dict "Content" .Content "Ruby" $params.ruby "Fraction" $params.fraction "Fontawesome" $params.fontawesome | partial "function/content.html" | safeHTML -}}
+                </div>
+            </section>
+        {{- end -}}
+
+        <section class="home-sections">
+            <div class="section-grid">
+                {{- range $sections -}}
+                    {{- $sectionPage := $.Site.GetPage .key -}}
+                    {{- if $sectionPage -}}
+                        <article class="section-card section-card-{{ .accent }}">
+                            <div class="section-card-header">
+                                <h2><a href="{{ $sectionPage.RelPermalink }}">{{ .title }}</a></h2>
+                            </div>
+                            <div class="section-card-meta">
+                                <span>{{ len $sectionPage.RegularPages }} entries</span>
+                            </div>
+                        </article>
+                    {{- end -}}
+                {{- end -}}
+            </div>
+        </section>
+
+        <section class="home-feed">
+            {{- range $sections -}}
+                {{- $sectionPage := $.Site.GetPage .key -}}
+                {{- if $sectionPage -}}
+                    {{- $pages := first 2 (sort $sectionPage.RegularPages "Date" "desc") -}}
+                    {{- if $pages -}}
+                        <div class="feed-column">
+                            <div class="feed-heading">
+                                <span class="section-kicker">{{ .key }}</span>
+                                <h2><a href="{{ $sectionPage.RelPermalink }}">{{ .title }}</a></h2>
+                            </div>
+                            {{- range $pages -}}
+                                {{- .Render "summary" -}}
+                            {{- end -}}
+                        </div>
+                    {{- end -}}
+                {{- end -}}
+            {{- end -}}
+        </section>
+    </div>
+{{- end -}}

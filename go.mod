@@ -1,3 +1,3 @@
-module github.com/gallo-s-chingon/tokyo-mistakes
+module github.com/schingon/tokyo-mistakes
 
 go 1.18

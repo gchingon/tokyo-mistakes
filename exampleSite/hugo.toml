@@ -1,93 +1,103 @@
 baseURL = "https://example.com"
-
-# theme
 theme = "tokyo-mistakes"
-# themes directory
 themesDir = "../.."
 
-# website title
-title = "tokyo-mistakes"
-
-# determines default content language ["en", "fr", "es", ...]
+title = "Gallo CHINGÓN Podcast"
+languageCode = "en-us"
 defaultContentLanguage = "en"
-# language code ["en", "fr", "es", ...]
-languageCode = "en"
-# language name ["English", "Français", "Español", ...]
-languageName = "English"
-# whether to include Japanese/Korean
-hasCJKLanguage = false
+ignoreFiles = [
+  "content/categories/.*",
+  "content/tags/.*",
+  "content/posts/.*",
+]
 
-# copyright description used only for seo schema
-copyright = ""
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
 
-# whether to use robots.txt
-enableRobotsTXT = true
-# whether to use git commit log
-enableGitInfo = true
-# whether to use emoji code
-enableEmoji = true
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
 
-# ignore some build errors
-ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
-
-# Pagination config
-[pagination]
-  disableAliases = false
-  pagerSize = 10
-  path = "page"
-
-# Menu config
 [menu]
   [[menu.main]]
     weight = 1
-    identifier = "posts"
-    # you can add extra information before the name (HTML format is supported), such as icons
-    pre = ""
-    # you can add extra information after the name (HTML format is supported), such as icons
-    post = ""
-    name = "Posts"
-    url = "/posts/"
-    # title will be shown when you hover on this menu link
-    title = ""
+    identifier = "episodes"
+    name = "Episodes"
+    url = "/episodes/"
+    title = "Archived podcast episodes"
   [[menu.main]]
     weight = 2
-    identifier = "tags"
-    pre = ""
-    post = ""
-    name = "Tags"
-    url = "/tags/"
-    title = ""
+    identifier = "blog"
+    name = "Blog"
+    url = "/blog/"
+    title = "Writing and notes"
   [[menu.main]]
     weight = 3
-    identifier = "categories"
-    pre = ""
-    post = ""
-    name = "Categories"
-    url = "/categories/"
-    title = ""
+    identifier = "featured"
+    name = "Featured"
+    url = "/featured/"
+    title = "Guest appearances"
+  [[menu.main]]
+    weight = 4
+    identifier = "about"
+    name = "About"
+    url = "/about/"
+    title = "About Gallo"
+  [[menu.main]]
+    weight = 5
+    identifier = "faq"
+    name = "FAQ"
+    url = "/faq/"
+    title = "Frequently asked questions"
+  [[menu.main]]
+    weight = 6
+    identifier = "contact"
+    name = "Contact"
+    url = "/contact/"
+    title = "Get in touch"
+[module]
+  [module.hugoVersion]
+    min = "0.128.0"
 
 [params]
   # site default theme ["auto", "light", "dark"]
   defaultTheme = "auto"
   # public git repo url only then enableGitInfo is true
-  gitRepo = "https://github.com/gallo-s-chingon/tokyo-mistakes"
+  gitRepo = ""
   # which hash function used for SRI, when empty, no SRI is used
   # ["sha256", "sha384", "sha512", "md5"]
   fingerprint = ""
   # date format
   dateFormat = "2006-01-02"
   # website title for Open Graph and Twitter Cards
-  title = "tokyo-mistakes"
+  title = "Gallo Chingon"
   # website description for RSS, SEO, Open Graph and Twitter Cards
-  description = "Hugo theme - tokyo-mistakes"
+  description = "Writing, guest appearances, archived and current podcast episodes."
   # website images for Open Graph and Twitter Cards
-  images = ["/logo.png"]
+  images = []
 
   # Author config
   [params.author]
-    name = "xxxx"
-    email = ""
-    link = ""
+    name = "Gallo Chingon"
+    email = "el.gallo.cochino@gmail.com"
+    link = "/about/"
+    [params.author.image]
+      src = "images/bout.png"
+      alt = "Portrait of Gallo Chingon"
+      shape = "oval"  # options are
+  [params.themeColors]
+    unifySingleColors = false
+    unifiedLight = "warning"
+    unifiedDark = "warning"
+    heroTocLight = "warning"
+    heroTocDark = "warning"
+    heading1Light = "success"
+    heading1Dark = "success"
+    heading2Light = "secondary"
+    heading2Dark = "secondary"
+    heading3Light = "rose"
+    heading3Dark = "rose"
 
   # Header config
   [params.header]
@@ -95,14 +105,20 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
     desktopMode = "fixed"
     # mobile header mode ["fixed", "normal", "auto"]
     mobileMode = "auto"
+    [params.header.scroll]
+      hideOnScroll = false
+      gradientOnScroll = true
+      gradientPrimary = "#6f1022"
+      gradientSecondary = "#d7a52d"
+      gradientTertiary = ""
     # Header title config
     [params.header.title]
       # URL of the LOGO
       logo = ""
       # title name
-      name = "tokyo-mistakes"
+      name = "Gallo Chingon"
       # you can add extra information before the name (HTML format is supported), such as icons
-      pre = "<i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i>"
+      pre = ""
       # you can add extra information after the name (HTML format is supported), such as icons
       post = ""
       # whether to use typeit animation for title name
@@ -120,11 +136,11 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
     # whether to show the author
     author = true
     # site creation time
-    since = 2024
+    since = 2022
     # ICP info only in China (HTML format is supported)
     icp = ""
     # license info (HTML format is supported)
-    license= '<a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a>'
+    license= ""
 
   # Section (all posts) page config
   [params.section]
@@ -147,23 +163,29 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
   # App icon config
   [params.app]
     # optional site title override for the app when added to an iOS home screen or Android launcher
-    title = "tokyo-mistakes"
+      title = "Gallo Chingon Podcast"
     # whether to omit favicon resource links
     noFavicon = false
     # modern SVG favicon to use in place of older style .png and .ico files
     svgFavicon = ""
     # Android browser theme color
-    themeColor = "#ffffff"
+    themeColor = "#eceff4"
     # Safari mask icon color
-    iconColor = "#5bbad5"
+    iconColor = "#5e81ac"
     # Windows v8-11 tile color
-    tileColor = "#da532c"
+    tileColor = "#1a1b26"
+
+  # Security config
+  [params.security]
+    # Content-Security-Policy meta tag for when HTTP headers cannot be set
+    # https://content-security-policy.com/examples/meta/
+    # contentSecurityPolicy = "default-src 'self'"
 
   # Search config
   [params.search]
     enable = true
-    # type of search engine ["lunr", "algolia"]
-    type = "algolia"
+    # type of search engine ["lunr", "algolia", "fuse", "pagefind"]
+    type = "fuse"
     # max index length of the chunked content
     contentLength = 4000
     # placeholder of the search bar
@@ -180,6 +202,18 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
       index = ""
       appID = ""
       searchKey = ""
+    [params.search.fuse]
+      # https://fusejs.io/api/options.html
+      isCaseSensitive = false
+      minMatchCharLength = 2
+      findAllMatches = false
+      location = 0
+      threshold = 0.3
+      distance = 100
+      ignoreLocation = false
+    [params.search.pagefind]
+      # Pagefind base path (run "npx pagefind --site public" after hugo build)
+      basePath = "/_pagefind/"
 
   # Home page config
   [params.home]
@@ -191,17 +225,17 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
       # Gravatar Email for preferred avatar in home page
       gravatarEmail = ""
       # URL of avatar shown in home page
-      avatarURL = "/images/avatar.png"
+      avatarURL = ""
       # title shown in home page (HTML format is supported)
-      title = ""
+      title = "Gallo Chingon"
       # subtitle shown in home page (HTML format is supported)
-      subtitle = "A Clean, Elegant but Advanced Hugo Theme"
+      subtitle = "Writing, guest appearances, archived and current podcast episodes."
       # whether to use typeit animation for subtitle
       typeit = true
       # whether to show social links
       social = true
       # disclaimer (HTML format is supported)
-      disclaimer = ""
+      disclaimer = "<b><i>Sucias (are my Favorite)</i></b> podcast is retired. Archived episodes are preserved here as while new writing and guest appearances stay active."
     # Home page posts
     [params.home.posts]
       enable = true
@@ -209,86 +243,87 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
       paginate = 6
   # Social config in home page
   [params.social]
-    GitHub = ""
-    Linkedin = ""
-    X = ""
-    Instagram = ""
-    Facebook = ""
-    Telegram = ""
-    Medium = ""
-    Gitlab = ""
-    Youtubelegacy = ""
-    Youtubecustom = ""
-    Youtubechannel = ""
-    Tumblr = ""
-    Quora = ""
-    Keybase = ""
-    Pinterest = ""
-    Reddit = ""
-    Codepen = ""
-    FreeCodeCamp = ""
+    Bandcamp = ""
+    Behance = ""
+    Bilibili = ""
     Bitbucket = ""
-    Stackoverflow = ""
-    Weibo = ""
-    Odnoklassniki = ""
-    VK = ""
+    Codeberg = ""
+    Codepen = ""
+    Deviantart = ""
+    Devto = ""
+    Discord = ""
+    DiscordInvite = ""
+    Douban = ""
+    Dribbble = ""
+    Email = "el.gallo.cochino@gmail.com"
+    Facebook = ""
+    Fivehundredpx = ""
     Flickr = ""
-    Xing = ""
+    Foursquare = ""
+    FreeCodeCamp = ""
+    GitHub = "gchingon"
+    Gitea = ""
+    Gitlab = ""
+    Goodreads = ""
+    Googlescholar = ""
+    HackTheBox = ""
+    Hackernews = ""
+    HuggingFace = ""
+    Instagram = "gallo.chingon.clips"
+    Jsfiddle = ""
+    Kaggle = ""
+    Keybase = ""
+    Kickstarter = ""
+    Lastfm = ""
+    LeetCode = ""
+    LeetCodeCN = ""
+    Lichess = ""
+    Linkedin = ""
+    Malt = ""
+    Mastodon = ""
+    Matrix = ""
+    MediaWiki = ""
+    Medium = ""
+    Mix = ""
+    ORCID = ""
+    Odnoklassniki = ""
+    Patreon = ""
+    Paypal = ""
+    Phone = ""
+    Pinterest = ""
+    Pleroma = ""
+    Plume = ""
+    Quora = ""
+    RSS = ""
+    Reddit = ""
+    Researchgate = ""
+    RootMe = ""
+    Skype = ""
+    Slidershare = ""
     Snapchat = ""
     Soundcloud = ""
     Spotify = ""
-    Bandcamp = ""
-    Paypal = ""
-    Fivehundredpx = ""
-    Mix = ""
-    Goodreads = ""
-    Lastfm = ""
-    Foursquare = ""
-    Hackernews = ""
-    Kickstarter = ""
-    Patreon = ""
+    Stackoverflow = ""
     Steam = ""
-    Twitch = ""
     Strava = ""
-    Skype = ""
-    Whatsapp = ""
-    Zhihu = ""
-    Douban = ""
-    Angellist = ""
-    Slidershare = ""
-    Jsfiddle = ""
-    Deviantart = ""
-    Behance = ""
-    Dribbble = ""
-    Wordpress = ""
-    Vine = ""
-    Googlescholar = ""
-    Researchgate = ""
-    Mastodon = ""
+    Telegram = ""
     Thingiverse = ""
-    Devto = ""
-    Gitea = ""
-    XMPP = ""
-    Matrix = ""
-    Bilibili = ""
-    Discord = ""
-    DiscordInvite = ""
-    Lichess = ""
-    ORCID = ""
-    Pleroma = ""
-    Kaggle = ""
-    MediaWiki = ""
-    Plume = ""
-    HackTheBox = ""
-    RootMe= ""
-    Malt = ""
-    TikTok = ""
-    TryHackMe = ""
-    Codeberg = ""
-    HuggingFace = ""
     Threads = ""
-    Email = ""
-    RSS = ""
+    TikTok = "gallo.salvaje.chingon"
+    TryHackMe = ""
+    Tumblr = ""
+    Twitch = "gall0ching0n"
+    VK = ""
+    Vine = ""
+    Weibo = ""
+    Whatsapp = ""
+    Wordpress = ""
+    X = ""
+    XMPP = ""
+    Xing = ""
+    Youtubechannel = ""
+    Youtubecustom = ""
+    Youtubelegacy = ""
 
   # Page global config
   [params.page]
@@ -324,9 +359,9 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
       copy = true
       # the maximum number of lines of displayed code by default
       maxShownLines = 50
-      [params.page.code.render]
-        goat = true
-        mermaid = true
+    [params.page.code.render]
+      goat = true
+      mermaid = true
     # KaTeX mathematical formulas config (KaTeX https://katex.org/)
     [params.page.math]
       enable = false
@@ -340,54 +375,35 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
       copyTex = true
       # KaTeX extension mhchem
       mhchem = true
-    # Mapbox GL JS config (Mapbox GL JS https://docs.mapbox.com/mapbox-gl-js)
-    [params.page.mapbox]
-      # access token of Mapbox GL JS
-      accessToken = "pk.eyJ1IjoiZGlsbG9uenEiLCJhIjoiY2s2czd2M2x3MDA0NjNmcGxmcjVrZmc2cyJ9.aSjv2BNuZUfARvxRYjSVZQ"
-      # style for the light theme
-      lightStyle = "mapbox://styles/mapbox/light-v10?optimize=true"
-      # style for the dark theme
-      darkStyle = "mapbox://styles/mapbox/dark-v10?optimize=true"
-      # whether to add NavigationControl (https://docs.mapbox.com/mapbox-gl-js/api/#navigationcontrol)
-      navigation = true
-      # whether to add GeolocateControl (https://docs.mapbox.com/mapbox-gl-js/api/#geolocatecontrol)
-      geolocate = true
-      # whether to add ScaleControl (https://docs.mapbox.com/mapbox-gl-js/api/#scalecontrol)
-      scale = true
-      # whether to add FullscreenControl (https://docs.mapbox.com/mapbox-gl-js/api/#fullscreencontrol)
-      fullscreen = true
     # Social share links in post page
     [params.page.share]
       enable = true
       X = true
       Threads = true
       Facebook = true
-      Linkedin = false
-      Whatsapp = false
-      Pinterest = false
-      Tumblr = false
-      HackerNews = true
-      Reddit = false
+      Linkedin = true
+      Whatsapp = true
+      Pinterest = true
+      Tumblr = true
+      HackerNews = false
+      Reddit = true
       VK = false
       Buffer = false
-      Xing = false
-      Line = true
+      Line = false
       Instapaper = false
       Pocket = false
       Flipboard = false
-      Weibo = true
       Blogger = false
-      Baidu = false
       Odnoklassniki = false
       Evernote = false
-      Skype = false
       Trello = false
-      Diaspora = true
-      Mix = false
+      Mix = true
       Telegram = true
+
     # Comment config
     [params.page.comment]
       enable = true
+      types = ["blog", "episodes", "featured"]
       # Disqus comment config (https://disqus.com/)
       [params.page.comment.disqus]
         enable = false
@@ -403,8 +419,8 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
       # Valine comment config (https://github.com/xCss/Valine)
       [params.page.comment.valine]
         enable = true
-        appId = "QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI"
-        appKey = "WBmoGyJtbqUswvfLh6L8iEBr"
+        appId = ""
+        appKey = ""
         placeholder = ""
         avatar = "mp"
         meta= ""
@@ -415,15 +431,15 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
         recordIP = true
         highlight = true
         enableQQ = false
-        serverURLs = "https://valine.hugoloveit.com"
+        serverURLs = ""
         # emoji data file name, default is "google.yml"
         # ["apple.yml", "google.yml", "facebook.yml", "twitter.yml"]
         # located in "themes/tokyo-mistakes/assets/lib/valine/emoji/" directory
         # you can store your own data files in the same path under your project:
         # "assets/lib/valine/emoji/"
         # ["apple.yml", "google.yml", "facebook.yml", "twitter.yml"]
-        # "themes/tokyo-mistakes/assets/lib/valine/emoji/"
         emoji = ""
+
       # Facebook comment config (https://developers.facebook.com/docs/plugins/comments)
       [params.page.comment.facebook]
         enable = false
@@ -449,9 +465,9 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
       [params.page.comment.utterances]
         enable = false
         # owner/repo
-        repo = ""
+        repo = "schingon/tokyo-mistakes"
         issueTerm = "pathname"
-        label = ""
+        label = "comments"
         lightTheme = "github-light"
         darkTheme = "github-dark"
       # giscus comment config (https://giscus.app/)
@@ -471,13 +487,6 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
         lazyLoading = false
         lightTheme = "light"
         darkTheme = "dark"
-      # Waline comment config (https://waline.js.org/)
-      [params.page.comment.waline]
-        enable = false
-        serverURL = "https://love-it-waline.vercel.app"
-        # automatically adapt the current theme i18n configuration when empty
-        lang = ""
-        emoji = ["https://unpkg.com/@waline/emojis@1.0.1/tw-emoji"]
     # Third-party library config
     [params.page.library]
       [params.page.library.css]
@@ -486,7 +495,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
         # someCSS = "https://cdn.example.com/some.css"
       [params.page.library.js]
         # someJavascript = "some.js"
-        # located in "assets/" 位于 "assets/"
+        # located in "assets/"
         # someJavascript = "https://cdn.example.com/some.js"
     # Page SEO config
     [params.page.seo]
@@ -494,8 +503,8 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
       images = []
       # Publisher info
       [params.page.seo.publisher]
-        name = "xxxx"
-        logoUrl = "/images/avatar.png"
+        name = ""
+        logoUrl = ""
 
   # TypeIt config
   [params.typeit]
@@ -512,16 +521,14 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
   [params.verification]
     google = ""
     bing = ""
-    yandex = ""
     pinterest = ""
-    baidu = ""
 
   # Site SEO config
   [params.seo]
     # image URL
-    image = "/images/Apple-Devices-Preview.png"
+    image = ""
     # thumbnail URL
-    thumbnailUrl = "/images/screenshot.png"
+    thumbnailUrl = ""
 
   # Analytics config
   [params.analytics]
@@ -559,7 +566,6 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
     # you can store your own data files in the same path under your project:
     # "assets/data/cdn/"
     # ["jsdelivr.yml"]
-    # "themes/tokyo-mistakes/assets/data/cdn/"
     # "assets/data/cdn/"
     data = "jsdelivr.yml"
 
@@ -569,169 +575,3 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
     polyfill = false
     # whether to use object-fit-images to be compatible with older browsers
     objectFit = false
-
-# Markup related configuration in Hugo
-[markup]
-  # Syntax Highlighting (https://gohugo.io/content-management/syntax-highlighting)
-  [markup.highlight]
-    anchorLineNos = false
-    codeFences = true
-    guessSyntax = false
-    lineNos = false
-    lineNumbersInTable = true
-    noClasses = true
-  # Goldmark is from Hugo 0.60 the default library used for Markdown
-  [markup.goldmark]
-    [markup.goldmark.extensions]
-      definitionList = true
-      footnote = true
-      linkify = true
-      strikethrough = true
-      table = true
-      taskList = true
-      typographer = true
-    [markup.goldmark.renderer]
-      # whether to use HTML tags directly in the document
-      unsafe = true
-  # Table Of Contents settings
-  [markup.tableOfContents]
-    startLevel = 2
-    endLevel = 6
-
-# Sitemap config
-[sitemap]
-  changefreq = "weekly"
-  filename = "sitemap.xml"
-  priority = 0.5
-
-# Permalinks config (https://gohugo.io/content-management/urls/#permalinks)
-# Permalinks 配置 (https://gohugo.io/content-management/urls/#permalinks)
-[permalinks]
-  # posts = ":year/:month/:filename"
-  posts = ":filename"
-
-# Privacy config (https://gohugo.io/configuration/privacy/)
-[privacy]
-  # privacy of the Google Analytics (can also be configured in params.analytics.google)
-  [privacy.googleAnalytics]
-    # ...
-  [privacy.twitter]
-    # ...
-  [privacy.youtube]
-    # ...
-
-# Options to make output .md files
-[mediaTypes]
-  [mediaTypes."text/plain"]
-    suffixes = ["md"]
-
-# Options to make output .md files
-[outputFormats.MarkDown]
-  mediaType = "text/plain"
-  isPlainText = true
-  isHTML = false
-
-# Options to make hugo output files
-[outputs]
-  home = ["HTML", "RSS", "JSON"]
-  page = ["HTML", "MarkDown"]
-  section = ["HTML", "RSS"]
-  taxonomy = ["HTML", "RSS"]
-
-# Multilingual
-[languages]
-  [languages.en]
-    weight = 1
-    languageCode = "en"
-    languageName = "English"
-    hasCJKLanguage = false
-    copyright = "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License."
-    [languages.en.menu]
-      [[languages.en.menu.main]]
-        weight = 1
-        identifier = "posts"
-        pre = ""
-        post = ""
-        name = "Posts"
-        url = "/posts/"
-        title = ""
-      [[languages.en.menu.main]]
-        weight = 2
-        identifier = "tags"
-        pre = ""
-        post = ""
-        name = "Tags"
-        url = "/tags/"
-        title = ""
-      [[languages.en.menu.main]]
-        weight = 3
-        identifier = "categories"
-        pre = ""
-        post = ""
-        name = "Categories"
-        url = "/categories/"
-        title = ""
-      [[languages.en.menu.main]]
-        weight = 4
-        identifier = "documentation"
-        pre = ""
-        post = ""
-        name = "Docs"
-        url = "/categories/documentation/"
-        title = ""
-      [[languages.en.menu.main]]
-        weight = 5
-        identifier = "about"
-        pre = ""
-        post = ""
-        name = "About"
-        url = "/about/"
-        title = ""
-      [[languages.en.menu.main]]
-        weight = 6
-        identifier = "github"
-        pre = "<i class='fab fa-github fa-fw' aria-hidden='true'></i>"
-        post = ""
-        name = ""
-        url = "https://github.com/gallo-s-chingon/tokyo-mistakes"
-        title = "GitHub"
-    [languages.en.params]
-      [languages.en.params.search]
-        enable = true
-        type = "algolia"
-        contentLength = 4000
-        placeholder = ""
-        maxResultLength = 10
-        snippetLength = 30
-        highlightTag = "em"
-        absoluteURL = false
-        [languages.en.params.search.algolia]
-          index = "index"
-          appID = "4D1IDY8JU6"
-          searchKey = "05332ac5ed76655a511f0da583a9afac"
-      [languages.en.params.home]
-        rss = 10
-        [languages.en.params.home.profile]
-          enable = true
-          gravatarEmail = ""
-          avatarURL = "/images/avatar.png"
-          title = ""
-          subtitle = "A Clean, Elegant but Advanced Hugo Theme"
-          typeit = true
-          social = true
-          disclaimer = ""
-      [languages.en.params.social]
-        GitHub = "xxxx"
-        X = "xxxx"
-        Instagram = "xxxx"
-        Facebook = "xxxx"
-        Telegram = "xxxx"
-        Youtubelegacy = "xxxx"
-        HuggingFace = "xxxx"
-        Threads = "xxxx"
-        Phone = "555-555-555"
-        Email = "xxxx@xxxx.com"
-        RSS = true
-        [languages.en.params.social.Mastodon]
-          id = "@xxxx"
-          prefix = "https://mastodon.technology/"

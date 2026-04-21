@@ -5,8 +5,8 @@ date: 2020-03-06T21:29:01+08:00
 lastmod: 2020-03-06T21:29:01+08:00
 draft: false
 author: "Dillon"
-authorLink: "https://schingon.com/author"
-description: "Discover what the Hugo - tokyo-mistakes theme is all about and the core-concepts behind it."
+authorLink: "https://dillonzq.com"
+description: "Discover what the Hugo - LoveIt theme is all about and the core-concepts behind it."
 images: []
 resources:
 - name: "featured-image"
@@ -21,7 +21,7 @@ toc:
   auto: false
 ---
 
-Discover what the Hugo - **tokyo-mistakes** theme is all about and the core-concepts behind it.
+Discover what the Hugo - **LoveIt** theme is all about and the core-concepts behind it.
 
 <!--more-->
 
@@ -29,7 +29,7 @@ Discover what the Hugo - **tokyo-mistakes** theme is all about and the core-conc
 
 Thanks to the simplicity of Hugo, [Hugo](https://gohugo.io/) is the only dependency of this theme.
 
-Just install latest edition of [:(far fa-file-archive fa-fw): Hugo](https://gohugo.io/getting-started/installing/) for your OS (**Windows**, **Linux**, **macOS**).
+Just install latest edition of [:(far fa-file-archive): Hugo](https://gohugo.io/getting-started/installing/) for your OS (**Windows**, **Linux**, **macOS**).
 
 {{< admonition note "When you need to use Hugo extended edition?" false >}}
 When you want [style customization](#style-customization), you need to use the Hugo **extended edition** for correct rendering.
@@ -52,26 +52,26 @@ cd my_website
 
 ### 2.2 Install the Theme
 
-The **tokyo-mistakes** theme's repository is: [https://github.com/gallo-s-chingon/tokyo-mistakes](https://github.com/gallo-s-chingon/tokyo-mistakes).
+The **LoveIt** theme's repository is: [https://github.com/dillonzq/LoveIt](https://github.com/dillonzq/LoveIt).
 
-You can download the [release :(far fa-file-archive fa-fw): .zip file](https://github.com/gallo-s-chingon/tokyo-mistakes/releases) of the theme and extract it in the `themes` directory.
+You can download the [release :(far fa-file-archive): .zip file](https://github.com/dillonzq/LoveIt/releases) of the theme and extract it in the `themes` directory.
 
 Alternatively, clone this repository to the `themes` directory:
 
 ```bash
-git clone https://github.com/gallo-s-chingon/tokyo-mistakes.git themes/tokyo-mistakes
+git clone https://github.com/dillonzq/LoveIt.git themes/LoveIt
 ```
 
 Or, create an empty git repository and make this repository a submodule of your site directory:
 
 ```bash
 git init
-git submodule add https://github.com/gallo-s-chingon/tokyo-mistakes.git themes/tokyo-mistakes
+git submodule add https://github.com/dillonzq/LoveIt.git themes/LoveIt
 ```
 
-{{< admonition note "tokyo-mistakes theme's compatibility" >}}
+{{< admonition note "LoveIt theme's compatibility" >}}
 
-| tokyo-mistakes branch or version | Supported Hugo versions |
+| LoveIt branch or version | Supported Hugo versions |
 |:-------------------------|:-----------------------:|
 | master(Unstable)         |        ≥ 0.128.0        |
 | **0.3.X(Recommended)**   |    0.128.0 - 0.145.0    |
@@ -81,13 +81,13 @@ git submodule add https://github.com/gallo-s-chingon/tokyo-mistakes.git themes/t
 
 ### 2.3 Basic Configuration {#basic-configuration}
 
-The following is a basic configuration for the tokyo-mistakes theme:
+The following is a basic configuration for the LoveIt theme:
 
 ```toml
 baseURL = "http://example.org/"
 
 # Change the default theme to be use when building the site with Hugo
-theme = "tokyo-mistakes"
+theme = "LoveIt"
 
 # website title
 title = "My New Hugo Site"
@@ -131,7 +131,7 @@ languageName = "English"
 [markup]
   # Syntax Highlighting (https://gohugo.io/content-management/syntax-highlighting)
   [markup.highlight]
-    # false is a necessary configuration (https://github.com/gallo-s-chingon/tokyo-mistakes/issues/158)
+    # false is a necessary configuration (https://github.com/dillonzq/LoveIt/issues/158)
     noClasses = false
 ```
 
@@ -198,15 +198,15 @@ Alternatively, you can use [AWS Amplify](https://gohugo.io/hosting-and-deploymen
 
 ### 3.1 Site Configuration {#site-configuration}
 
-In addition to [Hugo global configuration](https://gohugo.io/overview/configuration/) and [menu configuration](#basic-configuration), **tokyo-mistakes** lets you define the following parameters in your site configuration (here is a `hugo.toml`, whose values are default).
+In addition to [Hugo global configuration](https://gohugo.io/overview/configuration/) and [menu configuration](#basic-configuration), **LoveIt** lets you define the following parameters in your site configuration (here is a `hugo.toml`, whose values are default).
 
-Please open the code block below to view the complete sample configuration :(far fa-hand-point-down fa-fw)::
+Please open the code block below to view the complete sample configuration :(far fa-hand-point-down)::
 
 ```toml
 baseURL = "http://example.org/"
 
 # Change the default theme to be use when building the site with Hugo
-theme = "tokyo-mistakes"
+theme = "LoveIt"
 
 # website title
 title = "My New Hugo Site"
@@ -493,6 +493,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
     Codeberg = "" # {{< version 0.3.0 >}}
     HuggingFace = "" # {{< version 0.3.1 >}}
     Threads = "" # {{< version 0.3.1 >}}
+    LeetCode = "" # {{< version 0.3.1 >}}
     Phone = ""
     Email = "xxxx@xxxx.com"
     RSS = true # {{< version 0.2.0 >}}
@@ -625,7 +626,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
         serverURLs = ""
         # {{< version 0.2.6 >}} emoji data file name, default is "google.yml"
         # ["apple.yml", "google.yml", "facebook.yml", "twitter.yml"]
-        # located in "themes/tokyo-mistakes/assets/lib/valine/emoji/" directory
+        # located in "themes/LoveIt/assets/lib/valine/emoji/" directory
         # you can store your own data files in the same path under your project:
         # "assets/lib/valine/emoji/"
         emoji = ""
@@ -759,7 +760,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
   [params.cdn]
     # CDN data file name, disabled by default
     # ["jsdelivr.yml"]
-    # located in "themes/tokyo-mistakes/assets/data/cdn/" directory
+    # located in "themes/LoveIt/assets/data/cdn/" directory
     # you can store your own data files in the same path under your project:
     # "assets/data/cdn/"
     data = ""
@@ -780,7 +781,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
     lineNos = true
     lineNumbersInTable = true
     # false is a necessary configuration
-    # ({{< link "https://github.com/gallo-s-chingon/tokyo-mistakes/issues/158" >}})
+    # ({{< link "https://github.com/dillonzq/LoveIt/issues/158" >}})
     noClasses = false
   # Goldmark is from Hugo 0.60 the default library used for Markdown
   [markup.goldmark]
@@ -808,8 +809,8 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
 
 # {{< link "https://gohugo.io/content-management/urls#permalinks" "Permalinks config" >}}
 [Permalinks]
-  # posts = ":year/:month/:filename"
-  posts = ":filename"
+  # posts = ":year/:month/:contentbasename"
+  posts = ":contentbasename"
 
 # {{< link "https://gohugo.io/about/hugo-and-gdpr/" "Privacy config" >}}
 [privacy]
@@ -864,7 +865,7 @@ You could enable these features with `hugo serve -e production`.
   data = ""
 ````
 
-The default CDN data file is located in `themes/tokyo-mistakes/assets/data/cdn/` directory.
+The default CDN data file is located in `themes/LoveIt/assets/data/cdn/` directory.
 You can store your own data file in the same path under your project: `assets/data/cdn/`.
 {{< /admonition >}}
 
@@ -895,7 +896,7 @@ Or You can set more options through a dict:
     title = "Mastodon"
 ```
 
-The default data of all supported social links is located in `themes/tokyo-mistakes/assets/data/social.yaml`,
+The default data of all supported social links is located in `themes/LoveIt/assets/data/social.yaml`,
 which is you can refer to.
 {{< /admonition >}}
 
@@ -921,15 +922,15 @@ Customize `browserconfig.xml` and `site.webmanifest` to set theme-color and back
 {{< version 0.2.8 changed >}}
 
 {{< admonition note "Hugo extended version is necessary" >}}
-Since Hugo need to processes :(fab fa-sass fa-fw): SCSS to :(fab fa-css3 fa-fw): CSS,
+Since Hugo need to processes :(fab fa-sass): SCSS to :(fab fa-css3): CSS,
 Hugo **extended** version is necessary for the style customization.
 {{< /admonition >}}
 
-**tokyo-mistakes** theme has been built to be as configurable as possible by defining custom `.scss` style files.
+**LoveIt** theme has been built to be as configurable as possible by defining custom `.scss` style files.
 
 The directory including the custom `.scss` style files is `assets/css` relative to **your project root directory**.
 
-In `assets/css/_override.scss`, you can override the variables in `themes/tokyo-mistakes/assets/css/_variables.scss` to customize the style.
+In `assets/css/_override.scss`, you can override the variables in `themes/LoveIt/assets/css/_variables.scss` to customize the style.
 
 Here is a example:
 
@@ -942,40 +943,39 @@ In `assets/css/_custom.scss`, you can add some css style code to customize the s
 
 ## 4 Multilingual and i18n
 
-**tokyo-mistakes** theme is fully compatible with Hugo multilingual mode, which provides in-browser language switching.
+**LoveIt** theme is fully compatible with Hugo multilingual mode, which provides in-browser language switching.
 
 ![Language Switch](language-switch.gif "Language Switch")
 
 ### 4.1 Compatibility {#language-compatibility}
 
-{{< version 0.2.10 changed >}}
-
-| Language            | Hugo Code | HTML `lang` Attribute |          Theme Docs           |        Lunr.js Support        |
-|:--------------------|:---------:|:---------------------:|:-----------------------------:|:-----------------------------:|
-| English             |   `en`    |         `en`          | :(far fa-check-square fa-fw): | :(far fa-check-square fa-fw): |
-| Simplified Chinese  |  `zh-cn`  |        `zh-CN`        | :(far fa-check-square fa-fw): | :(far fa-check-square fa-fw): |
-| Traditional Chinese |  `zh-tw`  |        `zh-TW`        |    :(far fa-square fa-fw):    | :(far fa-check-square fa-fw): |
-| French              |   `fr`    |         `fr`          |    :(far fa-square fa-fw):    | :(far fa-check-square fa-fw): |
-| Polish              |   `pl`    |         `pl`          |    :(far fa-square fa-fw):    |    :(far fa-square fa-fw):    |
-| Portuguese (Brazil) |  `pt-br`  |        `pt-BR`        |    :(far fa-square fa-fw):    | :(far fa-check-square fa-fw): |
-| Italian             |   `it`    |         `it`          |    :(far fa-square fa-fw):    | :(far fa-check-square fa-fw): |
-| Spanish             |   `es`    |         `es`          |    :(far fa-square fa-fw):    | :(far fa-check-square fa-fw): |
-| German              |   `de`    |         `de`          |    :(far fa-square fa-fw):    | :(far fa-check-square fa-fw): |
-| German              |   `de`    |         `de`          |    :(far fa-square fa-fw):    | :(far fa-check-square fa-fw): |
-| Serbian             |   `sr`    |         `sr`          |    :(far fa-square fa-fw):    |    :(far fa-square fa-fw):    |
-| Russian             |   `ru`    |         `ru`          |    :(far fa-square fa-fw):    | :(far fa-check-square fa-fw): |
-| Romanian            |   `ro`    |         `ro`          |    :(far fa-square fa-fw):    | :(far fa-check-square fa-fw): |
-| Vietnamese          |   `vi`    |         `vi`          |    :(far fa-square fa-fw):    | :(far fa-check-square fa-fw): |
-| Arabic              |   `ar`    |         `ar`          |    :(far fa-square fa-fw):    | :(far fa-check-square fa-fw): |
-| Catalan             |   `ca`    |         `ca`          |    :(far fa-square fa-fw):    |    :(far fa-square fa-fw):    |
-| Thai                |   `th`    |         `th`          |    :(far fa-square fa-fw):    | :(far fa-check-square fa-fw): |
-| Telugu              |   `te`    |         `te`          |    :(far fa-square fa-fw):    |    :(far fa-square fa-fw):    |
-| Indonesian          |   `id`    |         `id`          |    :(far fa-square fa-fw):    |    :(far fa-square fa-fw):    |
-| Turkish             |   `tr`    |         `tr`          |    :(far fa-square fa-fw):    | :(far fa-check-square fa-fw): |
-| Korean              |   `ko`    |         `ko`          |    :(far fa-square fa-fw):    |    :(far fa-square fa-fw):    |
-| Hindi               |   `hi`    |         `hi`          |    :(far fa-square fa-fw):    |    :(far fa-square fa-fw):    |
-| Dutch               |   `nl`    |         `nl`          |    :(far fa-square fa-fw):    | :(far fa-check-square fa-fw): |
-| Bengali             |   `hi`    |         `hi`          |    :(far fa-square fa-fw):    |    :(far fa-square fa-fw):    |
+| Language                       | Hugo Code | HTML `lang` Attribute |       Theme Docs        |     Lunr.js Support     |
+|:-------------------------------|:---------:|:---------------------:|:-----------------------:|:-----------------------:|
+| English                        |   `en`    |         `en`          | :(far fa-check-square): | :(far fa-check-square): |
+| Simplified Chinese             |  `zh-cn`  |        `zh-CN`        | :(far fa-check-square): | :(far fa-check-square): |
+| Traditional Chinese            |  `zh-tw`  |        `zh-TW`        |    :(far fa-square):    | :(far fa-check-square): |
+| French                         |   `fr`    |         `fr`          |    :(far fa-square):    | :(far fa-check-square): |
+| Polish                         |   `pl`    |         `pl`          |    :(far fa-square):    |    :(far fa-square):    |
+| Portuguese (Brazil)            |  `pt-br`  |        `pt-BR`        |    :(far fa-square):    | :(far fa-check-square): |
+| Italian                        |   `it`    |         `it`          |    :(far fa-square):    | :(far fa-check-square): |
+| Spanish                        |   `es`    |         `es`          |    :(far fa-square):    | :(far fa-check-square): |
+| German                         |   `de`    |         `de`          |    :(far fa-square):    | :(far fa-check-square): |
+| German                         |   `de`    |         `de`          |    :(far fa-square):    | :(far fa-check-square): |
+| Serbian                        |   `sr`    |         `sr`          |    :(far fa-square):    |    :(far fa-square):    |
+| Russian                        |   `ru`    |         `ru`          |    :(far fa-square):    | :(far fa-check-square): |
+| Romanian                       |   `ro`    |         `ro`          |    :(far fa-square):    | :(far fa-check-square): |
+| Vietnamese                     |   `vi`    |         `vi`          |    :(far fa-square):    | :(far fa-check-square): |
+| Arabic                         |   `ar`    |         `ar`          |    :(far fa-square):    | :(far fa-check-square): |
+| Catalan                        |   `ca`    |         `ca`          |    :(far fa-square):    |    :(far fa-square):    |
+| Thai                           |   `th`    |         `th`          |    :(far fa-square):    | :(far fa-check-square): |
+| Telugu                         |   `te`    |         `te`          |    :(far fa-square):    |    :(far fa-square):    |
+| Indonesian                     |   `id`    |         `id`          |    :(far fa-square):    |    :(far fa-square):    |
+| Turkish                        |   `tr`    |         `tr`          |    :(far fa-square):    | :(far fa-check-square): |
+| Korean                         |   `ko`    |         `ko`          |    :(far fa-square):    |    :(far fa-square):    |
+| Hindi                          |   `hi`    |         `hi`          |    :(far fa-square):    |    :(far fa-square):    |
+| Dutch                          |   `nl`    |         `nl`          |    :(far fa-square):    | :(far fa-check-square): |
+| Bengali                        |   `hi`    |         `hi`          |    :(far fa-square):    |    :(far fa-square):    |
+| Japanese {{< version 0.3.1 >}} |   `ja`    |         `ja`          |    :(far fa-square):    | :(far fa-check-square): |
 
 ### 4.2 Basic Configuration
 
@@ -1100,15 +1100,15 @@ Use [Front Matter parameter](https://gohugo.io/content-management/multilingual#t
 
 Translations strings are used for common default values used in the theme. Translations are available in [some languages](#language-compatibility), but you may use another language or want to override default values.
 
-To override these values, create a new file in your local i18n folder `i18n/<languageCode>.toml` and inspire yourself from `themes/tokyo-mistakes/i18n/en.toml`.
+To override these values, create a new file in your local i18n folder `i18n/<languageCode>.toml` and inspire yourself from `themes/LoveIt/i18n/en.toml`.
 
-By the way, as these translations could be used by other people, please take the time to propose a translation by [:(fas fa-code-branch fa-fw): making a PR](https://github.com/gallo-s-chingon/tokyo-mistakes/pulls) to the theme!
+By the way, as these translations could be used by other people, please take the time to propose a translation by [:(fas fa-code-branch): making a PR](https://github.com/dillonzq/LoveIt/pulls) to the theme!
 
 ## 5 Search
 
 {{< version 0.2.0 >}}
 
-Based on [Lunr.js](https://lunrjs.com/) or [algolia](https://www.algolia.com/), searching is supported in **tokyo-mistakes** theme.
+Based on [Lunr.js](https://lunrjs.com/) or [algolia](https://www.algolia.com/), searching is supported in **LoveIt** theme.
 
 ### 5.1 Output Configuration
 
