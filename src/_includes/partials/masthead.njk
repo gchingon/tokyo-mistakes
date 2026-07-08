@@ -1,0 +1,18 @@
+<header class="masthead">
+  <div class="masthead__inner">
+    <a class="site-title" href="/">{{ site.title }}</a>
+    <nav class="greedy-nav" aria-label="Main navigation">
+      <ul class="greedy-nav__list">
+        {% for item in navigation.main %}
+          <li><a href="{{ item.url }}">{{ item.title }}</a></li>
+        {% endfor %}
+      </ul>
+      <div class="header-actions">
+        <button id="search-toggle-btn" class="search-toggle" type="button" aria-haspopup="dialog" aria-controls="search-modal" title="Search (Ctrl/Cmd+K)">
+          🔍 <span class="visually-hidden">Search</span>
+        </button>
+        <button id="theme-toggle-btn" class="theme-toggle" type="button">🌙 Night</button>
+      </div>
+    </nav>
+  </div>
+</header>

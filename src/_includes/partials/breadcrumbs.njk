@@ -1,0 +1,9 @@
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <a href="/">Home</a>
+  {% if crumb_section %}
+    <span class="sep">/</span>
+    <a href="{{ crumb_section_url }}">{{ crumb_section }}</a>
+  {% endif %}
+  <span class="sep">/</span>
+  <span aria-current="page">{{ title }}</span>
+</nav>

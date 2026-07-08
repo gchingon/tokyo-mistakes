@@ -1,0 +1,22 @@
+{
+  "name": "tokyo-mistakes",
+  "version": "1.0.0",
+  "description": "Eleventy port of Jekyll's Minimal Mistakes theme, skinned with Tokyo Night (day/night).",
+  "private": true,
+  "scripts": {
+    "build": "eleventy",
+    "start": "eleventy --serve",
+    "serve": "eleventy --serve",
+    "clean": "rm -rf _site"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0",
+    "@11ty/eleventy-plugin-rss": "^2.0.2",
+    "luxon": "^3.5.0",
+    "markdown-it": "^14.1.0",
+    "markdown-it-anchor": "^9.2.0",
+    "reading-time": "^1.5.0",
+    "lunr": "^2.3.9"
+  }
+}

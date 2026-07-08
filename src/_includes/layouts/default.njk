@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="{{ site.locale or 'en' }}" data-theme="day">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if title %}{{ title }} | {% endif %}{{ site.title }}</title>
+  <meta name="description" content="{{ description or site.description }}">
+  <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+  <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="/feed.xml">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <!-- Inline theme script: runs before first paint to avoid flash-of-wrong-theme -->
+  <script>
+    (function () {
+      try {
+        var pref = localStorage.getItem("theme-pref") || "auto";
+        var resolved = pref;
+        if (pref === "auto" || !pref) {
+          var prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+          resolved = prefersDark ? "night" : "day";
+        }
+        document.documentElement.setAttribute("data-theme", resolved);
+        document.documentElement.setAttribute("data-theme-pref", pref);
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to primary navigation</a>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  {% include "partials/masthead.njk" %}
+
+  <div id="main-content">
+    {{ content | safe }}
+  </div>
+
+  {% include "partials/footer.njk" %}
+  {% include "partials/search-modal.njk" %}
+
+  <script src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js" defer></script>
+  <script src="/assets/js/theme.js" defer></script>
+  <script src="/assets/js/main.js" defer></script>
+</body>
+</html>

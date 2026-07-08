@@ -1,0 +1,12 @@
+---
+title: Posts
+layout: layouts/archive-grid.njk
+permalink: "{% if pagination.pageNumber == 0 %}/posts/{% else %}/posts/page/{{ pagination.pageNumber | plus(1) }}/{% endif %}"
+pagination:
+  data: collections.posts
+  size: 4
+  alias: entries
+  reverse: false
+eleventyComputed:
+  description: "All posts on {{ site.title }}."
+---

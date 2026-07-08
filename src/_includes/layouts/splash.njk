@@ -1,0 +1,32 @@
+---
+layout: layouts/default.njk
+---
+<section class="splash-hero">
+  <div class="splash-hero__inner">
+    <h1>{{ site.title }}</h1>
+    <p>{{ site.description }}</p>
+    <a class="btn" href="/posts/">Read the blog</a>
+    <a class="btn btn--outline" href="/about/">About the author</a>
+  </div>
+</section>
+
+<div class="wrapper">
+  <main class="content" id="main-content">
+    <h2 style="margin-top:2.5rem;">Latest posts</h2>
+    <div class="entries-grid">
+      {% for post in collections.posts | head(4) %}
+        <div class="card">
+          <div class="card__image">
+            <img src="{{ post.data.header_image or '/assets/images/header-1.svg' }}" alt="{{ post.data.title }}">
+          </div>
+          <div class="card__body">
+            <h3 class="card__title"><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
+            <div class="post-meta"><span>📅 {{ post.date | readableDate }}</span></div>
+            <p class="card__excerpt">{{ post.data.excerpt or (post.templateContent | stripTags | head(140)) }}</p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    <p style="margin-top:2rem;"><a href="/posts/">View all posts &rarr;</a></p>
+  </main>
+</div>

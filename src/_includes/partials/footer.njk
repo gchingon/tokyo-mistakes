@@ -1,0 +1,10 @@
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <p>&copy; {{ year }} {{ site.title }}. Built with Eleventy, themed with <a href="https://github.com/folke/tokyonight.nvim">Tokyo Night</a>.</p>
+    <ul class="site-footer__links">
+      {% for link in site.footer.links %}
+        <li><a href="{{ link.url }}">{{ link.label }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+</footer>

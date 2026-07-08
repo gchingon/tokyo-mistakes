@@ -1,0 +1,24 @@
+{
+  "title": "Tokyo Mistakes",
+  "description": "A Minimal Mistakes-inspired Eleventy theme skinned with the Tokyo Night palette.",
+  "url": "https://example.com",
+  "locale": "en-US",
+  "author": {
+    "name": "Ada Nightingale",
+    "avatar": "/assets/images/avatar.svg",
+    "bio": "Static site tinkerer, terminal color-scheme enthusiast, and part-time night owl.",
+    "location": "Kyoto, Japan",
+    "links": [
+      { "label": "Website", "icon": "link", "url": "https://example.com" },
+      { "label": "GitHub", "icon": "github", "url": "https://github.com/example" },
+      { "label": "Twitter", "icon": "twitter", "url": "https://twitter.com/example" },
+      { "label": "Mastodon", "icon": "mastodon", "url": "https://mastodon.social/@example" }
+    ]
+  },
+  "footer": {
+    "links": [
+      { "label": "GitHub", "icon": "github", "url": "https://github.com/example" },
+      { "label": "RSS", "icon": "rss", "url": "/feed.xml" }
+    ]
+  }
+}

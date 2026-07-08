@@ -1,0 +1,60 @@
+---
+layout: layouts/default.njk
+---
+<div class="wrapper">
+  <main class="content" id="main-content">
+    {% include "partials/breadcrumbs.njk" %}
+    <h1 class="page__title">{{ title }}</h1>
+    {% if description %}<p class="archive-description">{{ description }}</p>{% endif %}
+
+    <div class="archive-controls">
+      <button type="button" data-view-toggle="grid" class="is-active">Grid</button>
+      <button type="button" data-view-toggle="list">List</button>
+    </div>
+
+    <div class="entries-grid">
+      {% for post in entries %}
+        <div class="card">
+          <div class="card__image">
+            <img src="{{ post.data.header_image or '/assets/images/header-1.svg' }}" alt="{{ post.data.title }}">
+          </div>
+          <div class="card__body">
+            <h2 class="card__title"><a href="{{ post.url }}">{{ post.data.title }}</a></h2>
+            <div class="post-meta"><span>📅 {{ post.date | readableDate }}</span></div>
+            <p class="card__excerpt">{{ post.data.excerpt or (post.templateContent | stripTags | head(140)) }}</p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="entries-list" hidden>
+      {% for post in entries %}
+        <div class="card">
+          <div class="card__image">
+            <img src="{{ post.data.header_image or '/assets/images/header-1.svg' }}" alt="{{ post.data.title }}">
+          </div>
+          <div class="card__body">
+            <h2 class="card__title"><a href="{{ post.url }}">{{ post.data.title }}</a></h2>
+            <div class="post-meta"><span>📅 {{ post.date | readableDate }}</span></div>
+            <p class="card__excerpt">{{ post.data.excerpt or (post.templateContent | stripTags | head(220)) }}</p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    {% if pagination %}
+    <nav class="pagination">
+      {% if pagination.href.previous %}
+        <a href="{{ pagination.href.previous }}">&larr; Newer posts</a>
+      {% else %}
+        <span class="disabled">&larr; Newer posts</span>
+      {% endif %}
+      {% if pagination.href.next %}
+        <a href="{{ pagination.href.next }}">Older posts &rarr;</a>
+      {% else %}
+        <span class="disabled">Older posts &rarr;</span>
+      {% endif %}
+    </nav>
+    {% endif %}
+  </main>
+</div>

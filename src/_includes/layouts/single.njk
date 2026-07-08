@@ -1,0 +1,81 @@
+---
+layout: layouts/default.njk
+---
+<div class="wrapper page-grid">
+  <main class="content" id="main-content">
+    <article>
+      {% set crumb_section = "Posts" %}
+      {% set crumb_section_url = "/posts/" %}
+      {% include "partials/breadcrumbs.njk" %}
+
+      <h1 class="page__title">{{ title }}</h1>
+
+      {% set post = page %}
+      {% include "partials/post-meta.njk" %}
+
+      {% if header_image %}
+        <div class="card__image" style="margin-bottom:1.5rem; border-radius:10px;">
+          <img src="{{ header_image }}" alt="{{ title }}">
+        </div>
+      {% endif %}
+
+      <div class="page__content">
+        {{ content | safe }}
+      </div>
+
+      <div class="share-buttons">
+        <a href="https://twitter.com/intent/tweet?url={{ site.url }}{{ page.url }}&text={{ title }}" target="_blank" rel="noopener">Share on Twitter</a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u={{ site.url }}{{ page.url }}" target="_blank" rel="noopener">Share on Facebook</a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ site.url }}{{ page.url }}" target="_blank" rel="noopener">Share on LinkedIn</a>
+      </div>
+
+      {% set nextPost = collections.posts | getNextCollectionItem %}
+      {% set prevPost = collections.posts | getPreviousCollectionItem %}
+      {% if nextPost or prevPost %}
+      <nav class="post-pager">
+        {% if prevPost %}
+          <a href="{{ prevPost.url }}">
+            <span class="post-pager__label">&larr; Previous</span>
+            {{ prevPost.data.title }}
+          </a>
+        {% endif %}
+        {% if nextPost %}
+          <a class="post-pager__next" href="{{ nextPost.url }}">
+            <span class="post-pager__label">Next &rarr;</span>
+            {{ nextPost.data.title }}
+          </a>
+        {% endif %}
+      </nav>
+      {% endif %}
+
+      {% set related = collections.posts | relatedPosts(page, 3) %}
+      {% if related.length %}
+      <section class="related-posts">
+        <h2>You might also enjoy</h2>
+        <div class="related-posts__grid">
+          {% for rp in related %}
+            <div class="card">
+              <div class="card__image">
+                <img src="{{ rp.data.header_image or '/assets/images/header-1.svg' }}" alt="{{ rp.data.title }}">
+              </div>
+              <div class="card__body">
+                <h3 class="card__title"><a href="{{ rp.url }}">{{ rp.data.title }}</a></h3>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </section>
+      {% endif %}
+
+      <div class="comments-placeholder">
+        💬 Comments are not enabled on this demo site. Wire up Disqus, Utterances, or Giscus here.
+      </div>
+    </article>
+  </main>
+
+  <aside class="sidebar">
+    {% include "partials/author-profile.njk" %}
+    {% set toc_items = content | toc %}
+    {% include "partials/toc.njk" %}
+  </aside>
+</div>

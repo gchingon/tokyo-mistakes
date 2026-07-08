@@ -1,0 +1,19 @@
+<div class="post-meta">
+  <span>📅 {{ post.date | readableDate }}</span>
+  <span>✍️ {{ site.author.name }}</span>
+  <span>⏱ {{ post.templateContent | readingTime }}</span>
+  {% if post.data.categories %}
+    <span>🗂
+      {% for cat in post.data.categories %}
+        <a href="/categories/#{{ cat | slugify }}">{{ cat }}</a>{% if not loop.last %}, {% endif %}
+      {% endfor %}
+    </span>
+  {% endif %}
+</div>
+{% if post.data.tags %}
+<ul class="chip-list">
+  {% for tag in post.data.tags %}
+    <li><a class="chip chip--{{ loop.index0 % 5 }}" href="/tags/#{{ tag | slugify }}">{{ tag }}</a></li>
+  {% endfor %}
+</ul>
+{% endif %}

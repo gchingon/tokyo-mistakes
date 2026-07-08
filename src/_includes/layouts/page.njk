@@ -1,0 +1,15 @@
+---
+layout: layouts/default.njk
+---
+<div class="wrapper page-grid">
+  <main class="content" id="main-content">
+    {% include "partials/breadcrumbs.njk" %}
+    <h1 class="page__title">{{ title }}</h1>
+    <div class="page__content">
+      {{ content | safe }}
+    </div>
+  </main>
+  <aside class="sidebar">
+    {% include "partials/author-profile.njk" %}
+  </aside>
+</div>

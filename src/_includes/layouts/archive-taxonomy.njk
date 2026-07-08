@@ -1,0 +1,30 @@
+---
+layout: layouts/default.njk
+---
+<div class="wrapper">
+  <main class="content" id="main-content">
+    {% include "partials/breadcrumbs.njk" %}
+    <h1 class="page__title">{{ title }}</h1>
+    <p class="archive-description">Browse posts grouped by {{ taxonomy_label }}.</p>
+
+    {% set field = "tags" if taxonomy_label == "tag" else "categories" %}
+    {% for term in collections.posts | groupByTaxonomy(field) %}
+      <section id="{{ term.slug }}" style="margin-bottom:2.5rem;">
+        <h2><span class="chip chip--{{ loop.index0 % 5 }}">{{ term.name }}</span> <small style="color:var(--color-muted)">({{ term.posts.length }})</small></h2>
+        <div class="entries-list">
+          {% for post in term.posts %}
+            <div class="card">
+              <div class="card__image">
+                <img src="{{ post.data.header_image or '/assets/images/header-1.svg' }}" alt="{{ post.data.title }}">
+              </div>
+              <div class="card__body">
+                <h3 class="card__title"><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
+                <div class="post-meta"><span>📅 {{ post.date | readableDate }}</span></div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </section>
+    {% endfor %}
+  </main>
+</div>

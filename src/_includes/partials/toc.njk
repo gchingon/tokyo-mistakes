@@ -1,0 +1,10 @@
+{% if toc_items and toc_items.length %}
+<div class="sidebar-toc">
+  <h3>On this page</h3>
+  <ul>
+    {% for item in toc_items %}
+      <li style="margin-left: {{ (item.level - 2) * 0.8 }}em"><a href="#{{ item.id }}">{{ item.text }}</a></li>
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}

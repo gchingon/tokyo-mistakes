@@ -1,0 +1,13 @@
+<div class="author-profile">
+  <div class="author-profile__avatar">
+    <img src="{{ site.author.avatar }}" alt="{{ site.author.name }}">
+  </div>
+  <div class="author-profile__name">{{ site.author.name }}</div>
+  <p class="author-profile__bio">{{ site.author.bio }}</p>
+  {% if site.author.location %}<p class="author-profile__bio">📍 {{ site.author.location }}</p>{% endif %}
+  <ul class="author-profile__links">
+    {% for link in site.author.links %}
+      <li><a href="{{ link.url }}">{{ link.label }}</a></li>
+    {% endfor %}
+  </ul>
+</div>
